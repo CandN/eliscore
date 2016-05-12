@@ -27,3 +27,11 @@ To start your Phoenix app:
 
 Now you can visit [`localhost:4000`](http://localhost:4000) from your browser.
 
+## Debugging
+
+To use interactive console run server with: `iex -S mix phoenix.server` and trigger in the code:
+```
+require IEx
+IEx.pry
+```
+
