@@ -33,7 +33,7 @@ defmodule Eliscore.Endpoint do
   plug Plug.Session,
     store: :cookie,
     key: "_eliscore_key",
-    signing_salt: "xm8cdz68"
+    signing_salt: "12CHbB76"
 
   plug Eliscore.Router
 end

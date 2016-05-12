@@ -9,7 +9,7 @@ use Mix.Config
 config :eliscore, Eliscore.Endpoint,
   url: [host: "localhost"],
   root: Path.dirname(__DIR__),
-  secret_key_base: "ILYcKblDZ/mr6mzbhAxZFX8IHlqQOnBQrLVHJh+OVh5CBaHjJ4QAyZpsGWCensWz",
+  secret_key_base: "4kEDZDYEGnDuqWY+iufCGgHQSL+P5bJcR9y5muKL6ZrTO2mZEvNMjAih10m5hLWf",
   render_errors: [accepts: ~w(html json)],
   pubsub: [name: Eliscore.PubSub,
            adapter: Phoenix.PubSub.PG2]
