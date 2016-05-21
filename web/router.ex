@@ -19,8 +19,16 @@ defmodule Eliscore.Router do
     get "/", PageController, :index
   end
 
+  scope "/api", Eliscore do
+    pipe_through :api
+
+    scope "/v1" do
+      post "/registrations", RegistrationController, :create
+    end
+  end
+
   # Other scopes may use custom stacks.
   # scope "/api", Eliscore do
-  #   pipe_through :api
-  # end
+    #   pipe_through :api
+    # end
 end
