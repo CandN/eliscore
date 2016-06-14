@@ -50,7 +50,13 @@ exports.config = {
   // Configure your plugins
   plugins: {
     babel: {
-      presets: ['es2015', 'react', 'stage-2', 'stage-0'],
+      presets: [
+        'es2015',
+        'react',
+        'stage-2',
+        'stage-0',
+        'react-router',
+        ],
 
       // Do not use ES6 compiler in vendor code
       ignore: [/web\/static\/vendor/],
