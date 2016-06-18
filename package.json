@@ -29,6 +29,7 @@
     "react-router-redux": "^4.0.0",
     "redux": "^3.1.2",
     "redux-logger": "^2.6.1",
+    "redux-simple-router": "^2.0.0",
     "redux-thunk": "^2.0.1",
     "sass-brunch": "^2.0.0",
     "uglify-js-brunch": "^2.0.1"

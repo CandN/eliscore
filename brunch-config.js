@@ -54,8 +54,7 @@ exports.config = {
         'es2015',
         'react',
         'stage-2',
-        'stage-0',
-        'react-router',
+        'stage-0'
         ],
 
       // Do not use ES6 compiler in vendor code
