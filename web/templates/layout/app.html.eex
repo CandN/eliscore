@@ -31,6 +31,12 @@
       <main id="main_container" role="main"></main>
 
     </div> <!-- /container -->
+
+    <footer id="main_footer">
+      <center>
+        <small>Eliscore epic coded with ♥ for the citizens</small>
+      </center>
+    </footer>
     <script src="<%= static_path(@conn, "/js/app.js") %>"></script>
   </body>
 </html>
