@@ -19,7 +19,7 @@ class AuthenticatedContainer extends React.Component {
 }
 
 const mapStateToProps = (state) => ({
-  currentUser: state.session.currentUser,
+  currentUser: state.session.currentUser
 });
 
 export default connect(mapStateToProps)(AuthenticatedContainer);
