@@ -7,7 +7,6 @@ export default function configRoutes(store) {
   return (
     <Route component={MainLayout}>
       <Route path="/" component={RegistrationsNew} />
-      </Route>
     </Route>
   );
 }
