@@ -1,12 +1,14 @@
-import React from "react";
+import React                    from 'react';
+import ReactDOM                 from 'react-dom';
+import { browserHistory }       from 'react-router';
+import { syncHistoryWithStore } from 'react-router-redux';
+import configureStore           from './store';
+import Root                     from './containers/root';
 
-let HelloWorld = React.createClass({
-    render: function() {
-        return (<h1>Hello Mr VP, We'll make America Gr8 Again!</h1>);
-    }
-});
+const store = configureStore(browserHistory);
+const history = syncHistoryWithStore(browserHistory, store);
 
-React.render(
-        <HelloWorld />,
-    document.getElementById('main_container')
-);
+const target = document.getElementById('main_container');
+const node = <Root routerHistory={history} store={store} />;
+
+ReactDOM.render(node, target);
