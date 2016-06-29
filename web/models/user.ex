@@ -1,6 +1,8 @@
 defmodule Eliscore.User do
   use Eliscore.Web, :model
 
+  @derive {Poison.Encoder, only: [:id, :login, :email]}
+
   schema "users" do
     field :login, :string
     field :email, :string
@@ -9,8 +11,6 @@ defmodule Eliscore.User do
 
     timestamps
   end
-
-  @derive {Poison.Encoder, only: [:id, :login, :email]}
 
   @required_fields ~w(login email password)
   @optional_fields ~w(encrypted_password)
