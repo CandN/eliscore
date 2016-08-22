@@ -1,0 +1,26 @@
+@import 'settings/variables';
+@import 'settings/overwrites';
+@import 'components/footer';
+@import 'components/header';
+@import 'components/score_table';
+
+html,
+body {
+  font-family: $font-stack;
+  height: 100%;
+  background-color: $bg-color-primary;
+  color: $text-color-primary;
+}
+
+a {
+  color: #DAFF7D;
+}
+
+.container {
+  &.container-narrow {
+    width: $default-width;
+    padding: 0;
+    position: relative;
+    min-height: 100%;
+  }
+}

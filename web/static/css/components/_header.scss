@@ -1,0 +1,14 @@
+.header {
+  border-bottom: 1px solid $tertiary-color;
+
+  .menu {
+    &__item {
+      float: right;
+
+      &--left {
+        letter-spacing: 5px;
+        float: left;
+      }
+    }
+  }
+}

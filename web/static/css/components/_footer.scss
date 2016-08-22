@@ -1,0 +1,25 @@
+.footer {
+  position: absolute;
+  bottom: 0;
+  font-size: 13px;
+  width: 100%;
+  color: $text-color-primary;
+  background-color: $bg-color-secondary;
+  text-align: left;
+  padding-top: 20px;
+  padding-left: 20px;
+
+
+  &__list {
+    list-style: none;
+  }
+
+  &__list-item {
+      padding-left: 5px;
+    }
+
+  &__copyright {
+    font-size: 11px;
+    text-align: center;
+  }
+}

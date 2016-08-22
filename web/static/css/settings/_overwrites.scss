@@ -1,0 +1,8 @@
+.nav > li > a {
+  border-radius: 0px;
+
+  &:hover {
+    background-color: $bg-color-pills-hover;
+    color: $color-pills-hover;
+  }
+}
