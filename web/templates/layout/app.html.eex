@@ -12,13 +12,13 @@
   </head>
 
   <body>
-    <main id="main_container" role="main"></main>
+    <div class="container container-narrow">
+      <%= render Eliscore.SharedView, "_header.html", assigns %>
 
-    <footer id="main_footer">
-      <center>
-        <small>Eliscore epic coded with ♥ for the citizens</small>
-      </center>
-    </footer>
+      <div class="form" id="main_container"></div>
+
+      <%= render Eliscore.SharedView, "_footer.html", assigns %>
+    </div>
     <script src="<%= static_path(@conn, "/js/app.js") %>"></script>
   </body>
 </html>
