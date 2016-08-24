@@ -23,4 +23,16 @@ defmodule Eliscore.GameMatch do
     model
     |> cast(params, @required_fields, @optional_fields)
   end
+
+  def with_players(query) do
+    from q in query, preload: [:player1, :player2]
+  end
+
+  def winner(game_match) do
+    if game_match.player1_score > game_match.player2_score do
+      game_match.player1.login;
+    else
+      game_match.player2.login;
+    end
+  end
 end
