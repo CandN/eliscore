@@ -31,6 +31,8 @@ defmodule Eliscore.Router do
       delete "/sessions", SessionController, :delete
 
       get "/current_user", CurrentUserController, :show
+
+      get "/matches", MatchesController, :index
     end
   end
 
