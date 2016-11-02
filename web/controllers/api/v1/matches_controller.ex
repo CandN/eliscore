@@ -12,4 +12,25 @@ defmodule Eliscore.MatchesController do
     |> put_status(:ok)
     |> render("index.json", matches: matches)
   end
+
+  plug :scrub_params, "game_match" when action in [:create]
+
+  def create(conn, %{"game_match" => game_match_params}) do
+    changeset = GameMatch.changeset(%GameMatch{}, game_match_params)
+
+    case Repo.insert(changeset) do
+      {:ok, game_match} ->
+        match = Repo.get(GameMatch, game_match.id)
+        |> Repo.preload([:player1, :player2])
+
+        conn
+        |> put_status(:created)
+        |> render("show.json", match: match)
+
+      {:error, changeset} ->
+        conn
+        |> put_status(:unprocessable_entity)
+        |> render("error.json", changeset: changeset)
+    end
+  end
 end

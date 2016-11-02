@@ -33,6 +33,7 @@ defmodule Eliscore.Router do
       get "/current_user", CurrentUserController, :show
 
       get "/matches", MatchesController, :index
+      post "/matches", MatchesController, :create
     end
   end
 
