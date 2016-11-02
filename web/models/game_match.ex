@@ -1,6 +1,8 @@
 defmodule Eliscore.GameMatch do
   use Eliscore.Web, :model
 
+  @derive {Poison.Encoder, only: [:id, :player1, :player2, :player1_score, :player2_score]}
+
   schema "game_matches" do
     belongs_to :player1, Eliscore.User, foreign_key: :player1_id
     field :player1_score, :integer
