@@ -20,8 +20,7 @@ defmodule Eliscore.MatchesController do
 
     case Repo.insert(changeset) do
       {:ok, game_match} ->
-        match = Repo.get(GameMatch, game_match.id)
-        |> Repo.preload([:player1, :player2])
+        match = Repo.preload(game_match, [:player1, :player2])
 
         conn
         |> put_status(:created)
