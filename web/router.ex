@@ -11,6 +11,7 @@ defmodule Eliscore.Router do
 
   pipeline :api do
     plug :accepts, ["json"]
+    plug CORSPlug
     plug Guardian.Plug.VerifyHeader
     plug Guardian.Plug.LoadResource
   end
@@ -34,6 +35,7 @@ defmodule Eliscore.Router do
 
       get "/matches", MatchesController, :index
       post "/matches", MatchesController, :create
+      options "/matches", MatchesController, :nothing
 
       get "/users", UsersController, :index
     end
