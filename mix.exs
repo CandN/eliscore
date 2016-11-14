@@ -38,6 +38,7 @@ defmodule Eliscore.Mixfile do
      {:gettext, "~> 0.9"},
      {:cowboy, "~> 1.0"},
      {:comeonin, "~> 2.0"},
+     {:cors_plug, "~> 1.1"},
      {:guardian, "~> 0.9.0"}]
   end
 
