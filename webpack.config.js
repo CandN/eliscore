@@ -10,7 +10,7 @@ module.exports = {
   },
   module: {
     loaders: [{
-      test: /\.js$/,
+      test: /\.jsx?$/,
       exclude: /node_modules/,
       loader: "babel-loader",
       query: {
@@ -31,6 +31,7 @@ module.exports = {
     new ExtractTextPlugin("css/app.css")
   ],
   resolve: {
-    modulesDirectories: ["node_modules", __dirname + "/web/static/js"]
+    extensions: ['', '.js', '.jsx'],
+    modulesDirectories: ["node_modules", __dirname + "/web/static/js"],
   }
 };
