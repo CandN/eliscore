@@ -3,6 +3,8 @@ import { connect }      from 'react-redux';
 import { routeActions } from 'redux-simple-router';
 import Actions          from '../actions/sessions';
 import MatchList        from '../components/match_list';
+import AddButton        from '../components/add_button';
+import NewMatchForm     from '../components/new_match_form';
 
 class AuthenticatedContainer extends React.Component {
   componentDidMount() {
@@ -16,10 +18,14 @@ class AuthenticatedContainer extends React.Component {
   }
 
   render() {
-    const { matches, dispatch } = this.props;
+    const { matches, dispatch, users} = this.props;
 
     return (
-      <MatchList matches={matches} dispatch={dispatch}/>
+      <div>
+        <MatchList matches={matches} dispatch={dispatch}/>
+        <AddButton text="add new match" />
+        <NewMatchForm dispatch={dispatch} users={users} />
+      </div>
     )
   }
 }
@@ -32,6 +38,7 @@ const mapStateToProps = (state) => {
   return {
     currentUser: state.session.currentUser,
     matches: matches,
+    users: state.matches.users,
   }
 };
 
