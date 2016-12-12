@@ -16,12 +16,6 @@ defmodule Eliscore.Router do
     plug Guardian.Plug.LoadResource
   end
 
-  scope "/", Eliscore do
-    pipe_through :browser # Use the default browser stack
-
-    get "/", PageController, :index
-  end
-
   scope "/api", Eliscore do
     pipe_through :api
 
@@ -39,6 +33,13 @@ defmodule Eliscore.Router do
 
       get "/users", UsersController, :index
     end
+  end
+
+  scope "/", Eliscore do
+    pipe_through :browser # Use the default browser stack
+
+    get "/", PageController, :index
+    get "/*path", PageController, :index
   end
 
   # Other scopes may use custom stacks.
