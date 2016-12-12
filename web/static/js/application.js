@@ -4,6 +4,7 @@ import { browserHistory }       from 'react-router';
 import { syncHistoryWithStore } from 'react-router-redux';
 import configureStore           from './store';
 import Root                     from './containers/root';
+import AddButton                from './components/add_button';
 
 const store = configureStore(browserHistory);
 const history = syncHistoryWithStore(browserHistory, store);

@@ -6,3 +6,15 @@
     color: $color-pills-hover;
   }
 }
+
+.form-horizontal {
+  .form-group {
+    margin-left: 0;
+    margin-right: 0;
+  }
+
+  .btn {
+    width: 100%;
+  }
+}
+

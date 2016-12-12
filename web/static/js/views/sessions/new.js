@@ -3,26 +3,20 @@ import { connect }          from 'react-redux';
 import { Link }             from 'react-router';
 
 import { setDocumentTitle, renderErrorsFor } from '../../utils';
-import Actions              from '../../actions/registrations';
+import Actions              from '../../actions/sessions';
 
-class RegistrationsNew extends React.Component {
+class SessionsNew extends React.Component {
   componentDidMount() {
-    setDocumentTitle('Sign up');
+    setDocumentTitle('Sign in');
   }
 
   _handleSubmit(e) {
     e.preventDefault();
 
     const { dispatch } = this.props;
+    const { email, password } = this.refs;
 
-    const data = {
-      login: this.refs.login.value,
-      email: this.refs.email.value,
-      password: this.refs.password.value,
-      password_confirmation: this.refs.passwordConfirmation.value,
-    };
-
-    dispatch(Actions.signUp(data));
+    dispatch(Actions.signIn(email.value, password.value));
   }
 
   render() {
@@ -31,11 +25,10 @@ class RegistrationsNew extends React.Component {
     return (
       <div className="view-container">
         <main>
+          <header>
+            <div className="logo" />
+          </header>
           <form onSubmit={::this._handleSubmit} className="form-horizontal">
-            <div className="form-group">
-              <input className="form-control" ref="login" type="text" placeholder="Login" required={true} />
-              {renderErrorsFor(errors, 'login')}
-            </div>
             <div className="form-group">
               <input className="form-control" ref="email" type="email" placeholder="Email" required={true} />
               {renderErrorsFor(errors, 'email')}
@@ -44,11 +37,9 @@ class RegistrationsNew extends React.Component {
               <input className="form-control" ref="password" type="password" placeholder="Password" required={true} />
               {renderErrorsFor(errors, 'password')}
             </div>
-            <div className="form-group">
-              <input className="form-control" ref="passwordConfirmation" type="password" placeholder="Confirm password" required={true} />
-              {renderErrorsFor(errors, 'password_confirmation')}
+            <div className="signup__button">
+              <button className="btn btn-primary btn-signin" type="submit">Sign in</button>
             </div>
-            <button className="btn btn-primary" type="submit">Sign up</button>
           </form>
         </main>
       </div>
@@ -57,7 +48,7 @@ class RegistrationsNew extends React.Component {
 }
 
 const mapStateToProps = (state) => ({
-  errors: state.registration.errors,
+  session: state.session,
 });
 
-export default connect(mapStateToProps)(RegistrationsNew);
+export default connect(mapStateToProps)(SessionsNew);

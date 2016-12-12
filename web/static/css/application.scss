@@ -4,6 +4,7 @@
 @import 'components/footer';
 @import 'components/header';
 @import 'components/score_table';
+@import 'components/view_container';
 
 html,
 body {
@@ -14,7 +15,7 @@ body {
 }
 
 a {
-  color: #DAFF7D;
+  color: #0C0101;
 }
 
 .container {
