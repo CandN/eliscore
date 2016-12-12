@@ -19,7 +19,7 @@ defmodule Eliscore.RegistrationController  do
       {:error, changeset} ->
         conn
         |> put_status(:unprocessable_entity)
-        |> render("error.json", changeset: changeset)
+        |> render(Eliscore.SessionView, "error.json", changeset: changeset)
     end
   end
 end
