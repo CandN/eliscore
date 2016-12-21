@@ -3,7 +3,7 @@
 /db
 /deps
 /*.ez
-/rel/eliscore
+/rel
 
 # Generate on crash by the VM
 erl_crash.dump
