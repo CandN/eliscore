@@ -19,7 +19,7 @@ defmodule Eliscore.Mixfile do
   def application do
     [mod: {Eliscore, []},
      applications: [:phoenix, :phoenix_html, :cowboy, :logger, :gettext,
-                    :phoenix_ecto, :postgrex, :comeonin]]
+                    :phoenix_ecto, :postgrex, :comeonin, :guardian, :cors_plug]]
   end
 
   # Specifies which paths to compile per environment.
