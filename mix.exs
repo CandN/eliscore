@@ -39,7 +39,8 @@ defmodule Eliscore.Mixfile do
      {:cowboy, "~> 1.0"},
      {:comeonin, "~> 2.0"},
      {:cors_plug, "~> 1.1"},
-     {:guardian, "~> 0.9.0"}]
+     {:guardian, "~> 0.9.0"},
+     {:exrm, "~> 0.14.2"}]
   end
 
   # Aliases are shortcut or tasks specific to the current project.
