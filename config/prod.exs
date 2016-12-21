@@ -19,6 +19,13 @@ config :eliscore, Eliscore.Endpoint,
 # Do not print debug messages in production
 config :logger, level: :info
 
+config :eliscore, Eliscore.Repo,
+  adapter: Ecto.Adapters.Postgres,
+  username: "postgres",
+  password: "postgres",
+  database: "eliscore_prod",
+  hostname: "localhost",
+  pool_size: 10
 # ## SSL Support
 #
 # To get SSL working, you will need to add the `https` key
@@ -62,4 +69,4 @@ config :logger, level: :info
 
 # Finally import the config/prod.secret.exs
 # which should be versioned separately.
-import_config "prod.secret.exs"
+#import_config "prod.secret.exs"
