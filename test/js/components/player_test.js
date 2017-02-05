@@ -3,7 +3,7 @@ import { shallow, mount } from 'enzyme';
 import chai, { expect } from 'chai';
 import chaiEnzyme from 'chai-enzyme';
 
-import Player from '../../components/player';
+import Player from '../../../web/static/js/components/player';
 
 chai.use(chaiEnzyme());
 

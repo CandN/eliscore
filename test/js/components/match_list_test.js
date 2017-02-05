@@ -3,10 +3,10 @@ import { shallow, mount } from 'enzyme';
 import chai, { expect } from 'chai';
 import chaiEnzyme from 'chai-enzyme';
 
-import Player from '../../components/player'
-import Separator from '../../components/separator'
-import Match from '../../components/match';
-import MatchList from '../../components/match_list';
+import Player from '../../../web/static/js/components/player'
+import Separator from '../../../web/static/js/components/separator'
+import Match from '../../../web/static/js/components/match';
+import MatchList from '../../../web/static/js/components/match_list';
 
 chai.use(chaiEnzyme());
 

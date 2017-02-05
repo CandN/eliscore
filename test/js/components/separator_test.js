@@ -3,7 +3,7 @@ import { shallow, mount } from 'enzyme';
 import chai, { expect } from 'chai';
 import chaiEnzyme from 'chai-enzyme';
 
-import Separator from '../../components/separator';
+import Separator from '../../../web/static/js/components/separator';
 
 chai.use(chaiEnzyme());
 
