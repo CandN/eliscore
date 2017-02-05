@@ -17,7 +17,15 @@ module.exports = function (config) {
       module: {
         loaders: [
           { test: /\.js$/, exclude: /node_modules/, loader: 'babel-loader' },
-          { test: /\.json$/, loader: 'json' }
+          { test: /\.json$/, loader: 'json' },
+          {
+            test: /\.jsx?$/,
+            exclude: /node_modules/,
+            loader: "babel-loader",
+            query: {
+              presets: ["es2015", "react", "stage-0", "stage-2"]
+            }
+          }
         ]
       },
       externals: {
