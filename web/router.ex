@@ -32,6 +32,7 @@ defmodule Eliscore.Router do
       options "/matches", MatchesController, :nothing
 
       get "/users", UsersController, :index
+      get "/users/:username", UsersController, :show
     end
   end
 
