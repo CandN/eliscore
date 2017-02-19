@@ -32,21 +32,18 @@ class RegistrationsNew extends React.Component {
       <div className="view-container">
         <main>
           <form onSubmit={::this._handleSubmit} className="form-horizontal">
+            <div className="form-errors">{errors}</div>
             <div className="form-group">
               <input className="form-control" ref="login" type="text" placeholder="Login" required={true} />
-              {renderErrorsFor(errors, 'login')}
             </div>
             <div className="form-group">
               <input className="form-control" ref="email" type="email" placeholder="Email" required={true} />
-              {renderErrorsFor(errors, 'email')}
             </div>
             <div className="form-group">
               <input className="form-control" ref="password" type="password" placeholder="Password" required={true} />
-              {renderErrorsFor(errors, 'password')}
             </div>
             <div className="form-group">
               <input className="form-control" ref="passwordConfirmation" type="password" placeholder="Confirm password" required={true} />
-              {renderErrorsFor(errors, 'password_confirmation')}
             </div>
             <button className="btn btn-primary" type="submit">Sign up</button>
           </form>
