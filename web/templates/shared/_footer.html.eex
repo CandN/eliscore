@@ -2,7 +2,7 @@
   <div class="row">
     <div class="col-md-6">
       <p>
-        Eliscore made with ❤ for the world by <a href="#">team</a> designed to be just a simple score sharing app!
+      Eliscore made with <span class="footer__heart">❤</span> for the world by <a href="#">team</a> designed to be just a simple score sharing app!
       </p>
     </div>
     <div class="col-md-6">
