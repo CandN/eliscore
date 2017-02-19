@@ -13,6 +13,7 @@ config :eliscore, Eliscore.Endpoint,
   render_errors: [accepts: ~w(html json)],
   pubsub: [name: Eliscore.PubSub,
            adapter: Phoenix.PubSub.PG2]
+config :eliscore, ecto_repos: [Eliscore.Repo]
 
 # Configures Elixir's Logger
 config :logger, :console,
