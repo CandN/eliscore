@@ -18,7 +18,7 @@ class UserShow extends React.Component {
         <div className="user__name">{user.login}</div>
         <div className="user__email">{user.email}</div>
         <div className="user__avatar">
-          <img src="https://unsplash.it/150/150/?random" />
+          <img src="https://placehold.it/150x150" />
         </div>
       </div>
     );
