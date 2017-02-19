@@ -41,6 +41,9 @@ class SessionsNew extends React.Component {
               <button className="btn btn-primary btn-signin" type="submit">Sign in</button>
             </div>
           </form>
+          <div className="link">
+            <Link to="/sign_up">New to Eliscore? Sign up! </Link>
+          </div>
         </main>
       </div>
     );
