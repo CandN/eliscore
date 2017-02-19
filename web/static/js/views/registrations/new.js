@@ -47,6 +47,9 @@ class RegistrationsNew extends React.Component {
             </div>
             <button className="btn btn-primary" type="submit">Sign up</button>
           </form>
+          <div className="link">
+            <Link to="/sign_in">Already have an account? Sign in! </Link>
+          </div>
         </main>
       </div>
     );
