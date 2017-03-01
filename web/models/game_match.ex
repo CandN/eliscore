@@ -13,7 +13,7 @@ defmodule Eliscore.GameMatch do
   end
 
   @required_fields ~w(player1_id player1_score player2_id player2_score)
-  @optional_fields ~w()
+  @optional_fields ~w(accepted)
 
   @doc """
   Creates a changeset based on the `model` and `params`.
