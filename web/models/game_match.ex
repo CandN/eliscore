@@ -9,7 +9,7 @@ defmodule Eliscore.GameMatch do
     belongs_to :player2, Eliscore.User, foreign_key: :player2_id
     field :player2_score, :integer
 
-    timestamps
+    timestamps()
   end
 
   @required_fields ~w(player1_id player1_score player2_id player2_score)
