@@ -6,7 +6,7 @@ export NODE_ENV=production
 
 RELEASE_VERSION=$(cat mix.exs | grep version | awk '{print $2}' | awk '{gsub(/"/, ""); print}' | sed 's/.$//')
 
-webpack -p --config ./webpack.config.js
+webpack -p --config ./webpack.config.prod.js
 mix compile
 mix phoenix.digest
 mix release
