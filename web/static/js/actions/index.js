@@ -22,7 +22,7 @@ export const postMatch = (player1, score1, player2, score2) => {
   }
 
   return dispatch => {
-    return axios.post("http://localhost:4000/api/v1/matches", game_match)
+    return axios.post("/api/v1/matches", game_match)
       .then((response) => {
         var match = response.data.match;
         dispatch(addMatch(match.id, match.player1, match.player1_score, match.player2, match.player2_score));
@@ -46,7 +46,7 @@ export const receiveUsers = (users) => {
 
 export const fetchUsers = () => {
   return dispatch => {
-    return axios.get("http://localhost:4000/api/v1/users")
+    return axios.get("/api/v1/users")
       .then((response) => {
         dispatch(receiveUsers(response.data.users))
       })
@@ -58,7 +58,7 @@ export const fetchUsers = () => {
 
 export const fetchMatches = () => {
   return dispatch => {
-    return axios.get("http://localhost:4000/api/v1/matches")
+    return axios.get("/api/v1/matches")
       .then((response) => {
         dispatch(receiveMatches(response.data.matches))
       })

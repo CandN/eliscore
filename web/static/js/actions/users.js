@@ -4,7 +4,7 @@ import { push }      from 'react-router-redux';
 const Actions = {
   fetchUser: (username, users) => {
     return dispatch => {
-      return axios.get(`http://localhost:4000/api/v1/users/${username}`)
+      return axios.get(`/api/v1/users/${username}`)
         .then((response) => {
           dispatch(Actions.receiveUser(response.data.user));
         })
