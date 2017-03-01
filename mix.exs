@@ -40,7 +40,8 @@ defmodule Eliscore.Mixfile do
      {:comeonin, "~> 2.0"},
      {:cors_plug, "~> 1.1"},
      {:guardian, "~> 0.9.0"},
-     {:exrm, "~> 1.0"}]
+     {:exrm, "~> 1.0"},
+     {:logger_file_backend, "~> 0.0.1"}]
   end
 
   # Aliases are shortcut or tasks specific to the current project.
