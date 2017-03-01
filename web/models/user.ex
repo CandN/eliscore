@@ -1,19 +1,20 @@
 defmodule Eliscore.User do
   use Eliscore.Web, :model
 
-  @derive {Poison.Encoder, only: [:id, :login, :email]}
+  @derive {Poison.Encoder, only: [:id, :login, :email, :admin]}
 
   schema "users" do
     field :login, :string
     field :email, :string
+    field :admin, :boolean
     field :password, :string, virtual: true
     field :encrypted_password, :string
 
-    timestamps
+    timestamps()
   end
 
   @required_fields ~w(login email password)
-  @optional_fields ~w(encrypted_password)
+  @optional_fields ~w(encrypted_password admin)
 
   @doc """
   Creates a changeset based on the `model` and `params`.
