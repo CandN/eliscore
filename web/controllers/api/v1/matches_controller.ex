@@ -5,6 +5,7 @@ defmodule Eliscore.MatchesController do
 
   def index(conn, _params) do
     matches = GameMatch
+    |> GameMatch.accepted
     |> Repo.all
     |> Repo.preload([:player1, :player2])
 

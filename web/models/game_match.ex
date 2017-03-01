@@ -8,6 +8,7 @@ defmodule Eliscore.GameMatch do
     field :player1_score, :integer
     belongs_to :player2, Eliscore.User, foreign_key: :player2_id
     field :player2_score, :integer
+    field :accepted, :boolean
 
     timestamps()
   end
@@ -24,6 +25,12 @@ defmodule Eliscore.GameMatch do
   def changeset(model, params \\ :empty) do
     model
     |> cast(params, @required_fields, @optional_fields)
+  end
+
+  def accepted(query) do
+    from q in query,
+    where: q.accepted == true,
+    select: q
   end
 
   def with_players(query) do
