@@ -14,7 +14,7 @@ use Mix.Config
 config :eliscore, Eliscore.Endpoint,
   http: [port: 8888],
   url: [host: "http://eliscore.siepet.pl"],
-  check_origin: ["http://eliscore.siepet.pl"],
+  check_origin: ["http://eliscore.siepet.pl", "localhost", "127.0.0.1"],
   cache_static_manifest: "priv/static/manifest.json",
   server: true,
   root: ".",
@@ -22,7 +22,7 @@ config :eliscore, Eliscore.Endpoint,
 
 
 # Do not print debug messages in production
-config :logger, level: :info
+# config :logger, level: :info
 
 config :logger, :error_log,
   path: "/home/eliscore/logs/error.log",
