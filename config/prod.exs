@@ -13,7 +13,7 @@ use Mix.Config
 # which you typically run after static files are built.
 config :eliscore, Eliscore.Endpoint,
   http: [port: 8888],
-  url: [host: "eliscore.siepet.pl"],
+  url: [host: "127.0.0.1", port: 8888],
   cache_static_manifest: "priv/static/manifest.json",
   server: true,
   root: ".",
