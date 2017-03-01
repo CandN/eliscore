@@ -23,6 +23,14 @@ config :eliscore, Eliscore.Endpoint,
 # Do not print debug messages in production
 config :logger, level: :info
 
+config :logger, :error_log,
+  path: "/home/eliscore/logs/error.log",
+  level: :error
+
+config :logger, :info_log,
+  path: "/home/eliscore/logs/info.log",
+  level: :info
+
 config :eliscore, Eliscore.Repo,
   adapter: Ecto.Adapters.Postgres,
   username: "postgres",
