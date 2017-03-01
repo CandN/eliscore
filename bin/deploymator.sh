@@ -4,7 +4,7 @@ export MIX_ENV=prod
 export PORT=8888
 export NODE_ENV=production
 
-RELEASE_VERSION=$1
+RELEASE_VERSION=$(cat mix.exs | grep version | awk '{print $2}' | awk '{gsub(/"/, ""); print}' | sed 's/.$//')
 
 webpack -p --config ./webpack.config.js
 mix compile
