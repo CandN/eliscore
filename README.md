@@ -35,3 +35,6 @@ require IEx
 IEx.pry
 ```
 
+## Deploying
+
+If you have environment ready, just use bin/deploymator.sh on your prod machine.
