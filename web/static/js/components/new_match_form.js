@@ -21,7 +21,7 @@ export default class NewMatchForm extends React.Component {
     let score2
 
     return (
-      <div className="form" style={{marginTop: '50px', marginBottom: '150px'}}>
+      <div className="form add-match-form">
         <form onSubmit={e => {
           e.preventDefault()
           dispatch(postMatch(player1.value, score1.value, player2.value, score2.value))
