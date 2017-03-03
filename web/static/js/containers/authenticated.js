@@ -7,6 +7,14 @@ import AddButton        from '../components/add_button';
 import NewMatchForm     from '../components/new_match_form';
 
 class AuthenticatedContainer extends React.Component {
+  constructor(props) {
+    super(props)
+    this.state = {
+      showForm: false
+    }
+    this.handleClick = this.handleClick.bind(this);
+  }
+
   componentDidMount() {
     const { dispatch, currentUser } = this.props;
 
@@ -17,14 +25,18 @@ class AuthenticatedContainer extends React.Component {
     }
   }
 
+  handleClick() {
+    this.setState({showForm: true});
+  }
+
   render() {
     const { matches, dispatch, users, currentUser} = this.props;
 
     return (
       <div>
         <MatchList matches={matches} dispatch={dispatch}/>
-        <AddButton text="add new match" />
-        <NewMatchForm dispatch={dispatch} users={users} currentUser={currentUser}/>
+        <AddButton text="add new match" onclick={this.handleClick}/>
+        { this.state.showForm ? <NewMatchForm dispatch={dispatch} users={users} currentUser={currentUser}/> : null }
       </div>
     )
   }
