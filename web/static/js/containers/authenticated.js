@@ -18,13 +18,13 @@ class AuthenticatedContainer extends React.Component {
   }
 
   render() {
-    const { matches, dispatch, users} = this.props;
+    const { matches, dispatch, users, currentUser} = this.props;
 
     return (
       <div>
         <MatchList matches={matches} dispatch={dispatch}/>
         <AddButton text="add new match" />
-        <NewMatchForm dispatch={dispatch} users={users} />
+        <NewMatchForm dispatch={dispatch} users={users} currentUser={currentUser}/>
       </div>
     )
   }

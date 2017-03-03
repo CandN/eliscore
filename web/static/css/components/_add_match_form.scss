@@ -1,5 +1,10 @@
 .add-match-form {
   display: none;
-  margin-top: 50px;
-  margin-bottom: 150px;
+  width: 75%;
+  margin: 100px auto 150px;
+
+  &__button {
+    width: 30%;
+    margin: 0 auto;
+  }
 }

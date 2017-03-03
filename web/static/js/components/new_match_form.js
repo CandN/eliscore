@@ -13,40 +13,58 @@ export default class NewMatchForm extends React.Component {
   }
 
   render() {
-    const { dispatch, users } = this.props;
+    const { dispatch, users, currentUser } = this.props;
 
     let player1
+    let player1_name
+    if (currentUser) {
+      player1 = currentUser.id;
+      player1_name = currentUser.login;
+    }
     let score1
     let player2
     let score2
 
     return (
-      <div className="form add-match-form">
+      <div className="form-horizontal add-match-form">
         <form onSubmit={e => {
           e.preventDefault()
-          dispatch(postMatch(player1.value, score1.value, player2.value, score2.value))
-          player1.value = ''
+          dispatch(postMatch(player1, score1.value, player2.value, score2.value))
           player2.value = ''
           score1.value = ''
           score2.value = ''
         }}>
-          Player1:
-            <select className="form-control" ref={node => player1 = node }>
-              { users.map(user =>
-                <option key={user.id} value={user.id}>{user.login}</option>
-              )}
-            </select>
-          Score:<input className="form-control" ref={node => { score1 = node }} />
-          Player2:
-            <select className="form-control" ref={node => player2 = node }>
-              { users.map(user =>
-                <option key={user.id} value={user.id}>{user.login}</option>
-              )}
-            </select>
-          Score:<input className="form-control" ref={node => { score2 = node }} />
-          <button type="submit">
-            add new game
-          </button>
+          <div className="row">
+            <div className="col-md-6">
+              <input type="text" value={player1_name} disabled="true" className="form-control"/>
+            </div>
+            <div className="col-md-6">
+              <select name="player-select" className="form-control col-md-6" ref={node => player2 = node }>
+                { users.map(user =>
+                  <option key={user.id} value={user.id}>{user.login}</option>
+                )}
+              </select>
+            </div>
+          </div>
+          <div className="row">
+            <div className="col-md-6 text-center">
+              <h4>YOUR SCORE</h4>
+              <div className="form-group">
+                <input placeholder="Enter score" type="number" min="0" step="1" className="form-control" ref={node => { score1 = node }} />
+              </div>
+            </div>
+            <div className="col-md-6 text-center">
+              <h4>ENEMY SCORE</h4>
+              <div className="form-group">
+                <input placeholder="Enter score" type="number" min="0" step="1" className="form-control" ref={node => { score2 = node }} />
+              </div>
+            </div>
+          </div>
+          <div className="add-match-form__button">
+            <button type="submit" className="btn btn-primary">
+              add new game
+            </button>
+          </div>
         </form>
       </div>
     )
