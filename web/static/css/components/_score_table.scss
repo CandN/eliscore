@@ -19,8 +19,14 @@
 
   &__btn-new {
     padding: 10px 15px;
+    cursor: pointer;
     border-radius: 10%;
+    transition: 0.2s linear;
     background-color: darken($bg-color-primary, 5%);
+
+    &:hover {
+      transform: scale(1.1);
+    }
   }
 }
 
