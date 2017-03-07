@@ -1,15 +1,9 @@
 import React, { PropTypes } from 'react'
 import Match from './match'
-import { fetchMatches } from '../actions/index'
 
 class MatchList extends React.Component {
   constructor(props) {
     super(props);
-  }
-
-  componentWillMount() {
-    const { dispatch } = this.props;
-    dispatch(fetchMatches());
   }
 
   render() {

@@ -5,6 +5,7 @@ import Actions          from '../actions/sessions';
 import MatchList        from '../components/match_list';
 import AddButton        from '../components/add_button';
 import NewMatchForm     from '../components/new_match_form';
+import { fetchMatches } from '../actions/index'
 
 class AuthenticatedContainer extends React.Component {
   constructor(props) {
@@ -13,6 +14,11 @@ class AuthenticatedContainer extends React.Component {
       showForm: false
     }
     this.handleClick = this.handleClick.bind(this);
+  }
+
+  componentWillMount() {
+    const { dispatch } = this.props;
+    dispatch(fetchMatches());
   }
 
   componentDidMount() {
@@ -34,7 +40,7 @@ class AuthenticatedContainer extends React.Component {
 
     return (
       <div>
-        <MatchList matches={matches} dispatch={dispatch}/>
+        <MatchList matches={matches}/>
         <AddButton text="add new match" onclick={this.handleClick}/>
         { this.state.showForm ? <NewMatchForm dispatch={dispatch} users={users} currentUser={currentUser}/> : null }
       </div>
