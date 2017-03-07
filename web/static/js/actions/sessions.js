@@ -43,9 +43,12 @@ const Actions = {
         dispatch(push('/'));
       })
       .catch((error) => {
-        dispatch({
-          type: Constants.SESSIONS_ERROR,
-          error: error,
+        error.response.json()
+        .then((errorJSON) => {
+          dispatch({
+            type: Constants.SESSIONS_ERROR,
+            error: errorJSON.error,
+          });
         });
       });
     };
