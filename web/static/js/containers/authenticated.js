@@ -32,7 +32,7 @@ class AuthenticatedContainer extends React.Component {
   }
 
   handleClick() {
-    this.setState({showForm: true});
+    this.setState({showForm: !this.state.showForm});
   }
 
   render() {
