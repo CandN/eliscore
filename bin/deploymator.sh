@@ -1,4 +1,5 @@
 #!/bin/bash
+set -e
 
 export MIX_ENV=prod
 export PORT=8888
