@@ -10,6 +10,7 @@ GIT_DIR=/home/git/projects/eliscore
 RELEASE_VERSION=$(cat mix.exs | grep version | awk '{print $2}' | awk '{gsub(/"/, ""); print}' | sed 's/.$//')
 
 cd $GIT_DIR && yes | mix local.hex
+cd $GIT_DIR && yes | mix local.rebar --force
 cd $GIT_DIR && mix deps.get
 cd $GIT_DIR && npm install
 
