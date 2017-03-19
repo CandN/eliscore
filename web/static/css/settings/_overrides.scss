@@ -1,0 +1,39 @@
+.nav > li > a {
+  border-radius: 0px;
+  color: $font-color;
+
+  &:hover {
+    background-color: $bg-color-pills-active;
+    color: $font-color-hover;
+  }
+}
+
+.nav > li.active > a {
+  background-color: $bg-color-pills-active;
+
+  &:hover {
+    background-color: $bg-color-pills-active-hover;
+  }
+}
+
+.form-horizontal {
+  .form-group {
+    margin-left: 0;
+    margin-right: 0;
+  }
+
+  .btn {
+    width: 100%;
+  }
+}
+
+.btn-primary {
+  background-color: $tertiary-color-dark;
+  border-color: $tertiary-color-dark;
+
+  &:hover {
+    background-color: $tertiary-color-darker;
+    border-color: $tertiary-color-darker;
+  }
+}
+
