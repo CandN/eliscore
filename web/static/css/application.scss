@@ -19,7 +19,13 @@ body {
 a {
   color: $font-color;
 
-  &:hover {
+  &:visited {
+    color: $font-color;
+  }
+
+  &:hover,
+  &:focus,
+  &:active {
     color: $font-color-hover;
     text-decoration: none;
   }

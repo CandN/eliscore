@@ -2,7 +2,8 @@
   border-radius: 0px;
   color: $font-color;
 
-  &:hover {
+  &:hover,
+  &:focus {
     background-color: $bg-color-pills-active;
     color: $font-color-hover;
   }
@@ -11,7 +12,8 @@
 .nav > li.active > a {
   background-color: $bg-color-pills-active;
 
-  &:hover {
+  &:hover,
+  &:focus {
     background-color: $bg-color-pills-active-hover;
   }
 }
