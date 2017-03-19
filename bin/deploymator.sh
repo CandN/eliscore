@@ -23,5 +23,5 @@ cp $GIT_DIR/rel/eliscore/releases/"$RELEASE_VERSION"/eliscore.tar.gz $APP_ROOT
 cd $APP_ROOT && tar xzf /home/eliscore/eliscore.tar.gz
 
 PID=$(ps aux | grep [b]eam | awk '{print $2}')
-kill -9 "$PID"
+sudo kill -9 "$PID"
 /bin/bash $APP_ROOT/bin/eliscore start
