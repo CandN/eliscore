@@ -28,6 +28,7 @@ defmodule EliscoreWeb.MatchesController do
         |> render("show.json", match: match)
 
       {:error, changeset} ->
+
         conn
         |> put_status(:unprocessable_entity)
         |> render("error.json", changeset: changeset)
