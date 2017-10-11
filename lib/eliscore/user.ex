@@ -21,6 +21,7 @@ defmodule Eliscore.User do
   def changeset(%User{} = user, attrs) do
     user
     |> cast(attrs, @required_fields, @optional_fields)
+    |> validate_required([:login, :email,:password])
     |> validate_format(:email, ~r/@/)
   end
 end
