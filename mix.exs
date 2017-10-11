@@ -41,12 +41,14 @@ defmodule Eliscore.Mixfile do
       {:phoenix_html, "~> 2.10"},
       {:phoenix_live_reload, "~> 1.0", only: :dev},
       {:gettext, "~> 0.11"},
-      {:cowboy, "~> 1.0"},
+      {:cowboy, "~> 1.1.2"},
       {:guardian, "~> 0.14.5"},
       {:distillery, "~> 1.5"},
-      {:comeonin, "~> 2.0"},
-      {:cors_plug, "~> 1.1"},
-      {:logger_file_backend, "~> 0.0.1"}
+      {:comeonin, "~> 4.0"},
+      {:bcrypt_elixir, "~> 1.0"},
+      {:cors_plug, "~> 1.4"},
+      {:cowlib, "~> 1.0.2"},
+      {:logger_file_backend, "~> 0.0.10"}
     ]
   end
 

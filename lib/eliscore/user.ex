@@ -20,7 +20,7 @@ defmodule Eliscore.User do
   @doc false
   def changeset(%User{} = user, attrs) do
     user
-    |> cast(attrs, @required_fields, @op)
+    |> cast(attrs, @required_fields, @optional_fields)
     |> validate_format(:email, ~r/@/)
   end
 end
