@@ -2,7 +2,7 @@ defmodule EliscoreWeb.UsersView do
   use EliscoreWeb, :view
 
   def render("index.json", %{users: users}) do
-    %{users: users}
+    Enum.map(users, &Map.take(&1, [:id, :login, :email]))
   end
 
   def render("show.json", %{user: user}) do

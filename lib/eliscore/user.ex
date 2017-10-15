@@ -3,7 +3,6 @@ defmodule Eliscore.User do
   import Ecto.Changeset
   alias Eliscore.User
 
-
   schema "users" do
     field :admin, :boolean, default: false
     field :email, :string
