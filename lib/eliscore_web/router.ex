@@ -31,8 +31,7 @@ defmodule EliscoreWeb.Router do
       post "/matches", MatchesController, :create
       options "/matches", MatchesController, :nothing
 
-      get "/users", UsersController, :index
-      get "/users/:username", UsersController, :show
+      resources "/users", UserController, only: [:index, :show]
     end
   end
 

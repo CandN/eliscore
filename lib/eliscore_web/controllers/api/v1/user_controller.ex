@@ -1,4 +1,4 @@
-defmodule EliscoreWeb.UsersController do
+defmodule EliscoreWeb.UserController do
   use EliscoreWeb, :controller
 
   alias Eliscore.{ User, Repo }
@@ -11,16 +11,16 @@ defmodule EliscoreWeb.UsersController do
     |> render("index.json", users: users)
   end
   
-  def show(conn, params) do
-    case Repo.get_by(User, login: params["username"]) do
+  def show(conn, %{"id" => id}) do
+    case Repo.get(User, id) do
       nil ->
         conn
-        |> put_status(:unprocessable_entity)
+        |> put_status(404)
         |> render("error.json")
       user ->
         conn
         |> put_status(:ok)
-        |> render("show.jsonname", user: user)
+        |> render("show.json", user: user)
     end
   end
 end
