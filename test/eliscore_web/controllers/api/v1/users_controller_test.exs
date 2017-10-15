@@ -9,15 +9,13 @@ defmodule EliscoreWeb.UsersControllerTest do
     Enum.each(users, &Repo.insert!(&1))
 
     response = build_conn()
-    |> get(users_path(build_conn(), :index))
-    |> json_response(200)
+               |> get(users_path(build_conn(), :index))
+               |> json_response(200)
 
-    expected = %{
-      "data" => [
-        %{"login" => "Test1", "email" => "test1@test.test", "password" => "password"},
-        %{"login" => "Test2", "email" => "test2@test.test", "password" => "password"}
-      ]
-    }
+    expected = [
+      %{"login" => "Test1", "email" => "test1@test.test", "id" => 12 },
+      %{"login" => "Test2", "email" => "test2@test.test", "id" => 13 }
+    ]
 
     assert response == expected
   end
