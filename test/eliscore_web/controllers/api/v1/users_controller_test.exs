@@ -9,7 +9,7 @@ defmodule EliscoreWeb.UsersControllerTest do
     Enum.each(users, &Repo.insert!(&1))
 
     response = build_conn()
-    |> get(user_path(build_conn(), :index))
+    |> get(users_path(build_conn(), :index))
     |> json_response(200)
 
     expected = %{
