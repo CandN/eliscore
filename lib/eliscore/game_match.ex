@@ -23,6 +23,7 @@ defmodule Eliscore.GameMatch do
     game_match
     |> cast(attrs, @required_fields, @optional_fields)
     |> validate_required([:player1_id, :player1_score, :player2_id, :player2_score])
+
   end
 
   def accepted(query) do
