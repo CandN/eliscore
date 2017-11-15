@@ -3,15 +3,15 @@ var webpack = require('webpack');
 var ExtractTextPlugin = require('extract-text-webpack-plugin');
 
 module.exports = {
-  entry: ["./web/static/css/application.scss", "./web/static/js/app.js"],
+  entry: ["./css/app.css", "./js/app.js"],
   output: {
-    path: "./priv/static/",
+    path: "../priv/static/",
     filename: "js/app.js"
   },
   module: {
     loaders: [{
       test: /\.jsx?$/,
-      exclude: /node_modules/,
+      exclude: /(node_modules|deps)/,
       loader: "babel-loader",
       query: {
         presets: ["es2015", "react", "stage-0", "stage-2"]
@@ -32,6 +32,10 @@ module.exports = {
   ],
   resolve: {
     extensions: ['', '.js', '.jsx'],
-    modulesDirectories: ["node_modules", __dirname + "/web/static/js"],
+    modulesDirectories: ["node_modules", __dirname + "../priv/static/js"],
+    alias: {
+      "phoenix": path.resolve(__dirname, "../deps/phoenix/priv/static/phoenix.js"),
+      "phoenix_html": path.resolve(__dirname, "../deps/phoenix_html/priv/static/phoenix_html.js")
+    }
   }
 };
