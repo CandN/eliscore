@@ -48,7 +48,7 @@ export const fetchUsers = () => {
   return dispatch => {
     return axios.get("/api/v1/users")
       .then((response) => {
-        dispatch(receiveUsers(response.data.users))
+        dispatch(receiveUsers(response.data.data))
       })
       .catch((error) => {
         console.log(error);

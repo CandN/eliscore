@@ -1,0 +1,41 @@
+@import '~bootstrap/dist/css/bootstrap.css';
+@import 'settings/variables';
+@import 'settings/overrides';
+@import 'components/footer';
+@import 'components/header';
+@import 'components/score_table';
+@import 'components/view_container';
+@import 'components/login_form';
+@import 'components/add_match_form';
+
+html,
+body {
+  font-family: $font-stack;
+  height: 100%;
+  background-color: $bg-color-primary;
+  color: $font-color;
+}
+
+a {
+  color: $font-color;
+
+  &:visited {
+    color: $font-color;
+  }
+
+  &:hover,
+  &:focus,
+  &:active {
+    color: $font-color-hover;
+    text-decoration: none;
+  }
+}
+
+.container {
+  &.container-narrow {
+    width: $default-width;
+    padding: 0;
+    position: relative;
+    min-height: 100%;
+  }
+}
