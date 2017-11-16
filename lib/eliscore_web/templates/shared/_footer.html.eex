@@ -1,0 +1,18 @@
+<div class="footer">
+  <div class="row">
+    <div class="col-md-6">
+      <p>
+      Eliscore made with <span class="footer__heart">❤</span> for the world by <a href="#">team</a> designed to be just a simple score sharing app!
+      </p>
+    </div>
+    <div class="col-md-6">
+      <ul class="footer__list">Eliscore
+        <li class="footer__list"><a href="#">About</a></li>
+        <li class="footer__list"><a href="#">The Team</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer__copyright">
+    eliscore &copy; 2016
+  </div>
+</div>

@@ -1,0 +1,8 @@
+<div class="header">
+  <ul class="menu nav nav-pills">
+    <li class="menu__item menu__item--left active"><a href="/" class="">eliscore</a></li>
+    <li class="menu__item">
+      <a href="#" class="">Profile <span class="glyphicon glyphicon-menu-down" aria-hidden="true"></span></a></li>
+    <li class="menu__item"><a href="#" class="menu__item__link">Leaderboards</a></li>
+  </ul>
+</div>
