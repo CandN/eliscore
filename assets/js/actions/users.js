@@ -6,7 +6,7 @@ const Actions = {
     return dispatch => {
       return axios.get(`/api/v1/users/${username}`)
         .then((response) => {
-          dispatch(Actions.receiveUser(response.data.user));
+          dispatch(Actions.receiveUser(response.data.data));
         })
         .catch((error) => {
           console.log(error);

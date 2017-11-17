@@ -2,7 +2,7 @@ defmodule EliscoreWeb.UserController do
   use EliscoreWeb, :controller
 
   alias Eliscore.{ User, Repo }
-  
+
   def index(conn, _params) do
     users = Repo.all(User)
 
@@ -10,9 +10,9 @@ defmodule EliscoreWeb.UserController do
     |> put_status(:ok)
     |> render("index.json", users: users)
   end
-  
-  def show(conn, %{"id" => id}) do
-    case Repo.get(User, id) do
+
+  def show(conn, %{"id" => login}) do
+    case Repo.get_by(User, login: login) do
       nil ->
         conn
         |> put_status(404)
