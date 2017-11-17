@@ -15,8 +15,8 @@ defmodule Eliscore.GameMatch do
     timestamps()
   end
 
-  @required_fields ~w(player1_id player1_score player2_id player2_score)
-  @optional_fields ~w(accepted)
+  @required_fields ~w(player1_id player1_score player2_id player2_score)a
+  @optional_fields ~w(accepted)a
 
   @doc false
   def changeset(%GameMatch{} = game_match, attrs) do
