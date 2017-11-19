@@ -4,10 +4,15 @@ defmodule EliscoreWeb.CurrentUserController do
   plug Guardian.Plug.EnsureAuthenticated, handler: EliscoreWeb.SessionController
 
   def show(conn, _) do
-    user = Guardian.Plug.current_resource(conn)
-
-    conn
-    |> put_status(:ok)
-    |> render("show.json", user: user)
+    case Guardian.Plug.current_resource(conn) do
+      %Eliscore.User{} = user ->
+        conn
+        |> put_status(:ok)
+        |> render("show.json", user: user)
+      nil ->
+        conn
+        |> put_status(404)
+        |> render("error.json", error: "Wrong token provided")
+    end
   end
 end

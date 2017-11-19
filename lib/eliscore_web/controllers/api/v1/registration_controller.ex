@@ -18,8 +18,8 @@ defmodule EliscoreWeb.RegistrationController do
 
       {:error, changeset} ->
         conn
-        |> put_status(:error)
-        |> render(EliscoreWeb.SessionView, "error.json", changset: changeset)
+        |> put_status(:bad_request)
+        |> render(EliscoreWeb.SessionView, "error.json", changeset: changeset)
     end
   end
   
