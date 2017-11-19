@@ -33,6 +33,6 @@ defmodule EliscoreWeb.SessionController do
   def unauthenticated(conn, _params) do
     conn
     |> put_status(:forbidden)
-    |> render(Eliscore.SessionView, "forbidden.json", error: "Not Authenticated")
+    |> render(EliscoreWeb.SessionView, "forbidden.json", error: "Not Authenticated")
   end
 end

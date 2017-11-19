@@ -14,6 +14,7 @@ defmodule EliscoreWeb.ConnCase do
   """
 
   use ExUnit.CaseTemplate
+  alias Eliscore.{Repo, User}
 
   using do
     quote do
@@ -23,9 +24,22 @@ defmodule EliscoreWeb.ConnCase do
 
       # The default endpoint for testing
       @endpoint EliscoreWeb.Endpoint
+
+      def sign_in() do
+        user = User.changeset(%User{}, %{login: "Test1", email: "t@test.pl", password: "pass"})
+             |> Repo.insert!
+
+        %Plug.Conn{assigns: %{jwt: jwt}} = build_conn() 
+                                         |> post(session_path(build_conn(), :create, %{
+                                           "session" => %{
+                                             "email" => user.email, 
+                                             "password" => user.password
+                                           }
+                                         }))
+        {user, jwt}
+      end
     end
   end
-
 
   setup tags do
     :ok = Ecto.Adapters.SQL.Sandbox.checkout(Eliscore.Repo)
