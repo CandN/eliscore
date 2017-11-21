@@ -60,7 +60,7 @@ export const fetchMatches = () => {
   return dispatch => {
     return axios.get("/api/v1/matches")
       .then((response) => {
-        dispatch(receiveMatches(response.data.matches))
+        dispatch(receiveMatches(response.data.data))
       })
       .catch((error) => {
         console.log(error);
