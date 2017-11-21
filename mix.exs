@@ -26,7 +26,7 @@ defmodule Eliscore.Mixfile do
   end
 
   # Specifies which paths to compile per environment.
-  defp elixirc_paths(:test), do: ["lib", "test/support"]
+  defp elixirc_paths(:test), do: ["lib", "test/support", "test/factories"]
   defp elixirc_paths(_),     do: ["lib"]
 
   # Specifies your project dependencies.
@@ -48,7 +48,9 @@ defmodule Eliscore.Mixfile do
       {:bcrypt_elixir, "~> 1.0"},
       {:cors_plug, "~> 1.4"},
       {:cowlib, "~> 1.0.2"},
-      {:logger_file_backend, "~> 0.0.10"}
+      {:logger_file_backend, "~> 0.0.10"},
+      {:poison, "~> 3.1"},
+      {:ex_machina, "~> 2.1", only: :test}
     ]
   end
 

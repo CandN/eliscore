@@ -3,7 +3,7 @@ defmodule Eliscore.GameMatch do
   import Ecto.{ Changeset, Query }
   alias Eliscore.GameMatch
 
-  @derive {Poison.Encoder, only: [:id, :player1, :player2, :player1_score, :player2_score]}
+  @derive {Poison.Encoder, only: [:id, :player1_id, :player2_id, :player1_score, :player2_score]}
 
   schema "game_matches" do
     field :accepted, :boolean, default: false

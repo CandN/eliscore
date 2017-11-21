@@ -1,4 +1,4 @@
-defmodule EliscoreWeb.MatchesController do
+defmodule EliscoreWeb.MatchController do
   use EliscoreWeb, :controller
 
   alias Eliscore.{ GameMatch, Repo }
