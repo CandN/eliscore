@@ -1,4 +1,5 @@
-import React, { PropTypes } from 'react'
+import React from 'react'
+import PropTypes from 'prop-types'
 
 const Separator = ({ text }) => (
   <div className="col-xs-2 match__separator">{text}</div>

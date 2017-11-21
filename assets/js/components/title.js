@@ -1,4 +1,5 @@
-import React, { PropTypes } from 'react'
+import React from 'react'
+import PropTypes from 'prop-types';
 
 const Title = ({ text }) => (
   <div className="score-table__title text-center">
