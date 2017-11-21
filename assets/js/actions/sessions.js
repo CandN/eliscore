@@ -60,7 +60,7 @@ const Actions = {
 
       httpGet('/api/v1/current_user')
       .then((data) => {
-        setCurrentUser(dispatch, data);
+        setCurrentUser(dispatch, data.data);
       })
       .catch((error) => {
         console.log(error);
