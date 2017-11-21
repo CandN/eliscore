@@ -1,7 +1,7 @@
 {
   "repository": {},
   "dependencies": {
-    "axios": "^0.15.3",
+    "axios": "^0.17.1",
     "babel-preset-react": "^6.3.13",
     "babel-preset-stage-0": "^6.3.13",
     "bootstrap": "^3.3.7",
