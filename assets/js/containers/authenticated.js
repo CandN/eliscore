@@ -1,6 +1,6 @@
 import React            from 'react';
 import { connect }      from 'react-redux';
-import { routeActions } from 'redux-simple-router';
+import { routeActions } from 'react-router-redux';
 import Actions          from '../actions/sessions';
 import MatchList        from '../components/match_list';
 import AddButton        from '../components/add_button';
