@@ -21,7 +21,7 @@ defmodule Eliscore.Mixfile do
   def application do
     [
       mod: {Eliscore.Application, []},
-      extra_applications: [:logger, :runtime_tools]
+      extra_applications: [:logger, :runtime_tools, :ueberauth_google]
     ]
   end
 
