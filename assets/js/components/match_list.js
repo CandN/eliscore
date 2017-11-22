@@ -1,4 +1,5 @@
-import React, { PropTypes } from 'react'
+import React from 'react'
+import PropTypes from 'prop-types'
 import Match from './match'
 
 class MatchList extends React.Component {
@@ -17,7 +18,6 @@ class MatchList extends React.Component {
       </div>
     )
   }
-
 }
 
 MatchList.propTypes = {
