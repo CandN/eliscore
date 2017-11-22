@@ -4,7 +4,6 @@ defmodule Eliscore.GameMatch do
   alias Eliscore.GameMatch
 
   @derive {Poison.Encoder, only: [:id, :player1_id, :player2_id, :player1_score, :player2_score]}
-
   schema "game_matches" do
     field :accepted, :boolean, default: false
     belongs_to :player1, Eliscore.User, foreign_key: :player1_id
