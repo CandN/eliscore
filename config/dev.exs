@@ -57,3 +57,9 @@ config :eliscore, Eliscore.Repo,
   database: "eliscore_dev",
   hostname: "localhost",
   pool_size: 10
+
+config :ueberauth, Ueberauth.Strategy.Google.OAuth,
+  client_id: 'secret'
+  client_secret: 'secret'
+
+import_config "dev.secret.exs"
