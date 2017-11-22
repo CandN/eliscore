@@ -6,7 +6,6 @@ defmodule Eliscore.User do
   alias Ueberauth.Auth
 
   @derive {Poison.Encoder, only: [:id, :email, :login]}
-
   schema "users" do
     field :admin, :boolean, default: false
     field :email, :string
