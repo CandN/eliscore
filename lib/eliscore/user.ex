@@ -20,8 +20,8 @@ defmodule Eliscore.User do
     timestamps()
   end
 
-  @required_fields ~w(email uuid)
-  @optional_fields ~w(encrypted_password admin full_name image_url first_name last_name)
+  @required_fields ~w(email uuid full_name image_url first_name last_name)
+  @optional_fields ~w(encrypted_password admin)
 
   @doc false
   def changeset(%User{} = user, attrs) do
