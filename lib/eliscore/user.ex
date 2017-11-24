@@ -12,6 +12,11 @@ defmodule Eliscore.User do
     field :password, :string, virtual: true
     field :encrypted_password, :string
     field :login, :string
+    field :full_name, :string
+    field :image_url, :string
+    field :first_name, :string
+    field :last_name, :string
+    field :uuid, :string
 
     timestamps()
   end
