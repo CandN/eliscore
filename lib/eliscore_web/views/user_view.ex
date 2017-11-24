@@ -11,7 +11,7 @@ defmodule EliscoreWeb.UserView do
   end
 
   def render("user.json", %{user: user}) do
-    %{id: user.id, login: user.login, email: user.email}
+    %{id: user.id, full_name: user.full_name, email: user.email}
   end
 
   def render("error.json", _) do

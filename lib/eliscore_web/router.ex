@@ -36,14 +36,9 @@ defmodule EliscoreWeb.Router do
   end
 
   scope "/", EliscoreWeb do
-    pipe_through :browser # Use the default browser stack
+    pipe_through :browser
 
     get "/", PageController, :index
     get "/*path", PageController, :index
   end
-
-  # Other scopes may use custom stacks.
-  # scope "/api", EliscoreWeb do
-  #   pipe_through :api
-  # end
 end

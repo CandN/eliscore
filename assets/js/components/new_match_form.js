@@ -20,7 +20,7 @@ export default class NewMatchForm extends React.Component {
     let player1_name
     if (currentUser) {
       player1 = currentUser.id;
-      player1_name = currentUser.login;
+      player1_name = currentUser.full_name;
     }
     let score1
     let player2
@@ -42,7 +42,7 @@ export default class NewMatchForm extends React.Component {
             <div className="col-md-6">
               <select name="player-select" className="form-control col-md-6" ref={node => player2 = node }>
                 { users.map(user =>
-                  <option key={user.id} value={user.id}>{user.login}</option>
+                  <option key={user.id} value={user.id}>{user.full_name}</option>
                 )}
               </select>
             </div>
