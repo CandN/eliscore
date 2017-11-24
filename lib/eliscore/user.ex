@@ -1,10 +1,9 @@
 defmodule Eliscore.User do
   use Ecto.Schema
   import Ecto.Changeset
-  import Ecto.Query, only: [from: 2]
   alias Eliscore.{Repo, User}
 
-  @derive {Poison.Encoder, only: [:id, :email, :login]}
+  @derive {Poison.Encoder, only: [:id, :email, :full_name]}
   schema "users" do
     field :admin, :boolean, default: false
     field :email, :string
