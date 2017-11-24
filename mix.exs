@@ -21,7 +21,7 @@ defmodule Eliscore.Mixfile do
   def application do
     [
       mod: {Eliscore.Application, []},
-      extra_applications: [:logger, :runtime_tools, :ueberauth_google]
+      extra_applications: [:logger, :runtime_tools]
     ]
   end
 
@@ -43,7 +43,6 @@ defmodule Eliscore.Mixfile do
       {:gettext, "~> 0.11"},
       {:cowboy, "~> 1.1.2"},
       {:guardian, "~> 0.14.5"},
-      {:ueberauth_google, "~> 0.7"},
       {:distillery, "~> 1.5"},
       {:comeonin, "~> 4.0"},
       {:bcrypt_elixir, "~> 1.0"},
