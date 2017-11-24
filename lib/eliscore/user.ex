@@ -3,7 +3,6 @@ defmodule Eliscore.User do
   import Ecto.Changeset
   import Ecto.Query, only: [from: 2]
   alias Eliscore.{Repo, User}
-  alias Ueberauth.Auth
 
   @derive {Poison.Encoder, only: [:id, :email, :login]}
   schema "users" do
@@ -21,30 +20,15 @@ defmodule Eliscore.User do
     timestamps()
   end
 
-  @required_fields ~w(login email)
-  @optional_fields ~w(encrypted_password admin)
+  @required_fields ~w(email uuid)
+  @optional_fields ~w(encrypted_password admin full_name image_url first_name last_name)
 
   @doc false
   def changeset(%User{} = user, attrs) do
     user
     |> cast(attrs, @required_fields, @optional_fields)
-    |> validate_required([:login, :email])
+    |> validate_required([:uuid, :email])
     |> validate_format(:email, ~r/@/)
     |> unique_constraint(:email)
-  end
-
-  def find_or_create(%Auth{} = auth) do
-    email = auth.info.email
-    user = Repo.one(from u in User, where: u.email == ^email) || auth |> from_auth() |> Repo.insert!()
-
-    {:ok, user}
-  end
-
-  defp from_auth(auth) do
-    changeset(%User{}, %{
-      email: auth.info.email,
-      login: auth.info.email,
-      password: auth.info.email,
-    })
   end
 end
