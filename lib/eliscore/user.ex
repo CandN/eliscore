@@ -25,6 +25,7 @@ defmodule Eliscore.User do
     |> cast(attrs, @required_fields, @optional_fields)
     |> validate_required([:login, :email])
     |> validate_format(:email, ~r/@/)
+    |> unique_constraint(:email)
     |> generate_encrypted_password
   end
 
