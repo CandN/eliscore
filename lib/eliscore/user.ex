@@ -16,7 +16,7 @@ defmodule Eliscore.User do
     timestamps()
   end
 
-  @required_fields ~w(login email password)
+  @required_fields ~w(login email)
   @optional_fields ~w(encrypted_password admin)
 
   @doc false
@@ -26,7 +26,6 @@ defmodule Eliscore.User do
     |> validate_required([:login, :email])
     |> validate_format(:email, ~r/@/)
     |> unique_constraint(:email)
-    |> generate_encrypted_password
   end
 
   def find_or_create(%Auth{} = auth) do
@@ -42,14 +41,5 @@ defmodule Eliscore.User do
       login: auth.info.email,
       password: auth.info.email,
     })
-  end
-
-  defp generate_encrypted_password(current_changeset) do
-    case current_changeset do
-      %Ecto.Changeset{valid?: true, changes: %{password: password}} ->
-        put_change(current_changeset, :encrypted_password, Comeonin.Bcrypt.hashpwsalt(password))
-      _ ->
-        current_changeset
-    end
   end
 end
