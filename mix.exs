@@ -45,7 +45,6 @@ defmodule Eliscore.Mixfile do
       {:guardian, "~> 0.14.5"},
       {:distillery, "~> 1.5"},
       {:comeonin, "~> 4.0"},
-      {:bcrypt_elixir, "~> 1.0"},
       {:cors_plug, "~> 1.4"},
       {:cowlib, "~> 1.0.2"},
       {:logger_file_backend, "~> 0.0.10"},
