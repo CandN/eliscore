@@ -26,6 +26,8 @@
 
     &:hover {
       transform: scale(1.1);
+      background-color: grey;
+      color: $color-black;
     }
   }
 }
@@ -36,44 +38,31 @@
 
   &__separator {
     text-align: center;
-    font-size: 33px;
+    font-size: 30px;
     color: $color-black;
+  }
+
+  &__row {
+    display: flex;
+    justify-content: center;
+    align-items: center;
   }
 }
 
 .player {
-  padding: 10px 15px;
-
-  &--left {
-    text-align: left;
-  }
-
-  &--right {
-    text-align: right;
-  }
+  text-align: center;
 
   &__score {
-    padding: 5px 5px;
-    width: 30px;
-    float: left;
     text-align: center;
+    font-size: 30px;
+    padding: 5px 5px;
     background-color: lighten($bg-color-primary, 10%);
-    border-radius: 15% 0 0 15%;
-
-    &--right {
-      float: right;
-      border-radius: 0 15% 15% 0;
-    }
+    border-radius: 15%;
   }
 
   &__name {
-    margin: 0 0 0 30px;
-    padding: 5px 0 5px 15px;
     background-color: darken($bg-color-primary, 10%);
-
-    &--right {
-      margin: 0 30px 0 0;
-      padding: 5px 15px 5px 0;
-    }
+    margin: 0px 40px 0px 40px;
+    width: 150px;
   }
 }
