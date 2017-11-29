@@ -7,25 +7,17 @@ class Player extends React.Component {
   }
 
   render() {
-    const { score, nickname, position } = this.props;
-
-    return (
-      <div className="col-xs-5">
-        <div className={`player player--${position}`}>
-          <div className={`player__score player__score--${position}`}>{score}</div>
-          <div className={`player__name player__name--${position}`}>
-              <a href={`/users/${nickname}`}>{nickname}</a>
-            </div>
-        </div>
-      </div>
-    )
+    const { full_name } = this.props;
+      return (
+          <div className="player player__name col-xs-3 ">
+            <a href={`/users/${full_name}`}>{full_name}</a>
+          </div>
+      ) 
   }
 }
 
 Player.propTypes = {
-  score: PropTypes.number.isRequired,
-  nickname: PropTypes.string.isRequired,
-  position: PropTypes.string.isRequired
+  full_name: PropTypes.string.isRequired,
 }
 
 export default Player
