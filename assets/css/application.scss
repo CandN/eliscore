@@ -33,6 +33,8 @@ a {
 
 .container {
   &.container-narrow {
+    display: flex;
+    flex-direction: column;
     width: $default-width;
     padding: 0;
     position: relative;
