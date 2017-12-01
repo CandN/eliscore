@@ -29,7 +29,7 @@ defmodule EliscoreWeb.UserControllerTest do
              |> Repo.insert!
 
       response = build_conn()
-                 |> get(user_path(build_conn(), :show, user.id))
+                 |> get(user_path(build_conn(), :show, user))
                  |> json_response(200)
 
       expected = %{ "data" => %{"full_name" => "Test1", "id" => user.id, "email" => "t@test.pl" } }
