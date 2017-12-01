@@ -5,6 +5,7 @@ defmodule EliscoreWeb.MatchController do
 
   def index(conn, _params) do
     matches = GameMatch
+              |> GameMatch.newest
               |> Repo.all
               |> Repo.preload([:player1, :player2])
 
