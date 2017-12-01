@@ -29,7 +29,7 @@ defmodule EliscoreWeb.UserControllerTest do
              |> Repo.insert!
 
       response = build_conn()
-                 |> get(user_path(build_conn(), :show, user.login))
+                 |> get(user_path(build_conn(), :show, user.id))
                  |> json_response(200)
 
       expected = %{ "data" => %{"login" => "Test1", "id" => user.id, "email" => "t@test.pl" } }
@@ -43,7 +43,7 @@ defmodule EliscoreWeb.UserControllerTest do
 
       expected = %{ "error" => "User not found." }
 
-      assert response == expected 
+      assert response == expected
 
     end
   end
