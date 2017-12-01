@@ -8,11 +8,11 @@ const Match = ({ id, player1, player1_score, player2, player2_score }) => (
   <div className="score-table__item">
     <div className="match">
       <div className="row match__row">
-        <Player full_name={player1.full_name} />
+        <Player id={player1.id} full_name={player1.full_name} />
         <Score score={player1_score} />
         <Separator text={"⚔"} />
         <Score score={player2_score} />
-        <Player full_name={player2.full_name} />
+        <Player id={player2.id} full_name={player2.full_name} />
       </div>
     </div>
   </div>

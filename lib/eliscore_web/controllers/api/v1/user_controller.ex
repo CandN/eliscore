@@ -11,8 +11,8 @@ defmodule EliscoreWeb.UserController do
     |> render("index.json", users: users)
   end
 
-  def show(conn, %{"id" => full_name}) do
-    case Repo.get_by(User, full_name: full_name) do
+  def show(conn, %{"id" => id}) do
+    case Repo.get(User, id) do
       nil ->
         conn
         |> put_status(404)
