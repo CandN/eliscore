@@ -28,20 +28,26 @@ defmodule Eliscore.GameMatch do
   def accepted(query) do
     from q in query,
       where: q.accepted == true,
-      select: q 
+      select: q
+  end
+
+  def newest(query) do
+    from q in query,
+      order_by: [desc: q.inserted_at],
+      select: q
   end
 
   def with_players(query) do
     from q in query, preload: [:player1, :player2]
   end
 
-  def winner(game_match = %{player1_score: score1, player2_score: score2}) 
-  when score1 > score2 do 
+  def winner(game_match = %{player1_score: score1, player2_score: score2})
+  when score1 > score2 do
     game_match.player1.login
   end
 
-  def winner(game_match = %{player1_score: score1, player2_score: score2}) 
-  when score2 > score1 do 
+  def winner(game_match = %{player1_score: score1, player2_score: score2})
+  when score2 > score1 do
     game_match.player2.login
   end
 
