@@ -12,7 +12,7 @@ defmodule EliscoreWeb.UserController do
   end
 
   def show(conn, %{"id" => id}) do
-    case Repo.get_by(User, id: id) do
+    case Repo.get(User, id) do
       nil ->
         conn
         |> put_status(404)
