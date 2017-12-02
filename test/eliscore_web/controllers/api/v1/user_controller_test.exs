@@ -28,7 +28,6 @@ defmodule EliscoreWeb.UserControllerTest do
     Enum.each(users, &Repo.insert!(&1))
     user_1 = Repo.get_by(User, first_name: "John")
     user_2 = Repo.get_by(User, first_name: "Dohn")
-
     response = build_conn()
                |> get(user_path(build_conn(), :index))
                |> json_response(200)
@@ -60,7 +59,7 @@ defmodule EliscoreWeb.UserControllerTest do
       user_1 = Repo.get_by!(User, first_name: "John")
 
       response = build_conn()
-                 |> get(user_path(build_conn(), :index))#, user_1))
+                 |> get(user_path(build_conn(), :index, user_1))
                  |> json_response(200)
 
       expected = %{ "data" => %{"full_name" => "John Doe", "id" => user_1.id, "email" => "test3@test.test" }}
@@ -74,8 +73,7 @@ defmodule EliscoreWeb.UserControllerTest do
 
       expected = %{ "error" => "User not found." }
 
-      assert response == expected 
-
+      assert response == expected
     end
   end
 end
