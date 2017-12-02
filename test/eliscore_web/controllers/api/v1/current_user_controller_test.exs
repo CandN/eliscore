@@ -10,7 +10,7 @@ defmodule EliscoreWeb.CurrentUserControllerTest do
                  |> get(current_user_path(build_conn(), :show))
                  |> json_response(200)
 
-      expected = %{ "data" => %{"login" => "Test1", "id" => user.id, "email" => "t@test.pl" } }
+      expected = %{ "data" => %{"full_name" => "John Doe", "id" => user.id, "email" => "t@test.pl" } }
       assert response == expected
     end
 
@@ -20,7 +20,7 @@ defmodule EliscoreWeb.CurrentUserControllerTest do
                                              |> get(current_user_path(build_conn(), :show))
 
       response = error
-      expected = "Not Authenticated"
+      expected = "Wrong token provided"
       assert response == expected
     end
 

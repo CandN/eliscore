@@ -4,7 +4,16 @@ defmodule EliscoreWeb.RegistrationControllerTest do
 
   describe "create/2" do
     test "returns jwt and user in response" do
-      user_params = %{"user" => %{login: "Test1", email: "t@test.pl", password: "pass"}}
+      user_params = %{
+        "user" => %{
+          "full_name" => "John Doe", 
+          "first_name" => "John", 
+          "last_name" => "Doe", 
+          "email" => "t@test.pl", 
+          "uuid" => "123456789"
+        }
+      }
+
       response = build_conn()
                  |> RegistrationController.create(user_params)
                  |> json_response(200)
@@ -19,7 +28,6 @@ defmodule EliscoreWeb.RegistrationControllerTest do
                  |> RegistrationController.create(user_params)
 
       assert response.status == 400
-      assert Map.has_key?(response.assigns(), :changeset) == true 
     end
   end
 end

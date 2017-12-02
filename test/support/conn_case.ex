@@ -26,16 +26,16 @@ defmodule EliscoreWeb.ConnCase do
       @endpoint EliscoreWeb.Endpoint
 
       def sign_in() do
-        user = User.changeset(%User{}, %{login: "Test1", email: "t@test.pl", password: "pass"})
-             |> Repo.insert!
+        { :ok, user } = User.changeset(%User{}, %{
+          full_name: "John Doe", 
+          first_name: "John", 
+          last_name: "Doe", 
+          image_url: "some/url",
+          email: "t@test.pl", 
+          uuid: "1234567890"
+        }) |> Repo.insert
 
-        %Plug.Conn{assigns: %{jwt: jwt}} = build_conn() 
-                                         |> post(session_path(build_conn(), :create, %{
-                                           "session" => %{
-                                             "email" => user.email, 
-                                             "password" => user.password
-                                           }
-                                         }))
+        {:ok, jwt, _full_claims} = user |> Guardian.encode_and_sign(:token)
         {user, jwt}
       end
     end
