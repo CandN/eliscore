@@ -2,6 +2,7 @@ import { IndexRoute, Route }        from 'react-router';
 import React                        from 'react';
 import MainLayout                   from '../layouts/main';
 import RegistrationsNew             from '../views/registrations/new';
+import LiveStream                   from '../components/live_stream';
 import SessionsNew                  from '../views/sessions/new';
 import UserShow                     from '../views/users/show';
 import Actions                      from '../actions/sessions';
@@ -26,7 +27,7 @@ export default function configRoutes(store) {
     <Route component={MainLayout}>
       <Route path="/sign_up" component={RegistrationsNew} />
       <Route path="/sign_in" component={RegistrationsNew} />
-
+      <Route path="/live" component={LiveStream} />
       <Route path="/" component={AuthenticatedContainer} onEnter={_ensureAuthenticated} />
       <Route path="/users/:username" component={UserShow} />
     </Route>
