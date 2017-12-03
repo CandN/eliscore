@@ -1,8 +1,6 @@
 defmodule EliscoreWeb.CurrentUserController do
   use EliscoreWeb, :controller
 
-  plug Guardian.Plug.EnsureAuthenticated, handler: EliscoreWeb.SessionController
-
   def show(conn, _) do
     case Guardian.Plug.current_resource(conn) do
       %Eliscore.User{} = user ->
