@@ -20,13 +20,30 @@ defmodule Eliscore.Auth do
   end
 
   defp find_or_create(params) do
-    params_map = Map.new(params, fn {k, v} -> {String.to_atom(k), v} end)
-    case Repo.get_by(User, params_map) do
+    insert_params = Map.new(params, fn {k, v} -> {String.to_atom(k), v} end)
+    case Repo.get_by(User, params_map(params)) do
       nil ->
-        User.changeset(%User{}, params_map)
+        User.changeset(%User{}, insert_params)
         |> Repo.insert
       user ->
+        update_user_image(user, params["image_url"])
         {:ok, user}
     end
+  end
+
+  defp params_map(params) do
+    %{
+      first_name: params["first_name"],
+      last_name: params["last_name"],
+      email: params["email"],
+      uuid: params["uuid"],
+      full_name: params["full_name"]
+    }
+  end
+
+  defp update_user_image(user, image_url) do
+    user
+    |> Ecto.Changeset.change(%{image_url: image_url})
+    |> Repo.update
   end
 end
