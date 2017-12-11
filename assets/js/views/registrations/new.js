@@ -20,7 +20,8 @@ class RegistrationsNew extends React.Component {
       uuid: profileObj.googleId,
       full_name: profileObj.name,
       first_name: profileObj.givenName,
-      last_name: profileObj.familyName
+      last_name: profileObj.familyName,
+      image_url: profileObj.imageUrl
     }
     dispatch(Actions.signUp(data));
   }

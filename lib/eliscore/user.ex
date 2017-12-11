@@ -3,7 +3,7 @@ defmodule Eliscore.User do
   import Ecto.Changeset
   alias Eliscore.{Repo, User}
 
-  @derive {Poison.Encoder, only: [:id, :email, :full_name]}
+  @derive {Poison.Encoder, only: [:id, :email, :full_name, :image_url]}
   schema "users" do
     field :admin, :boolean, default: false
     field :email, :string
