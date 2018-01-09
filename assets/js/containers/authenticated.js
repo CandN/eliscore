@@ -6,6 +6,7 @@ import MatchList        from '../components/match_list';
 import AddButton        from '../components/add_button';
 import NewMatchForm     from '../components/new_match_form';
 import { fetchMatches } from '../actions/index'
+import { fetchCategories } from '../actions/index'
 
 class AuthenticatedContainer extends React.Component {
   constructor(props) {
@@ -19,6 +20,7 @@ class AuthenticatedContainer extends React.Component {
   componentWillMount() {
     const { dispatch } = this.props;
     dispatch(fetchMatches());
+    dispatch(fetchCategories());
   }
 
   componentDidMount() {
@@ -33,16 +35,17 @@ class AuthenticatedContainer extends React.Component {
 
   handleClick() {
     this.setState({showForm: !this.state.showForm});
+    window.scrollTo(0, 0)
   }
 
   render() {
-    const { matches, dispatch, users, currentUser} = this.props;
+    const { matches, categories, dispatch, users, currentUser} = this.props;
 
     return (
       <div>
-        <MatchList matches={matches}/>
         <AddButton text="add new match" onclick={this.handleClick}/>
-        { this.state.showForm ? <NewMatchForm dispatch={dispatch} users={users} currentUser={currentUser}/> : null }
+        { this.state.showForm ? <NewMatchForm dispatch={dispatch} users={users} currentUser={currentUser} categories={categories}/> : null }
+        <MatchList matches={matches} categories={categories}/>
       </div>
     )
   }
@@ -56,6 +59,7 @@ const mapStateToProps = (state) => {
   return {
     currentUser: state.session.currentUser,
     matches: matches,
+    categories: state.categories.categories,
     users: state.matches.users,
   }
 };

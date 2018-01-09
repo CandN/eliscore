@@ -1,23 +1,25 @@
 import axios from 'axios';
 
-export const addMatch = (id, player1, score1, player2, score2) => {
+export const addMatch = (id, player1, score1, player2, score2, category_id) => {
   return {
     type: 'ADD_MATCH',
     id: id,
     player1: player1,
     player1_score: score1,
     player2: player2,
-    player2_score: score2
+    player2_score: score2,
+    category_id: category_id,
   }
 }
 
-export const postMatch = (player1, score1, player2, score2) => {
+export const postMatch = (player1_id, score1, player2_id, score2, category_id) => {
   var game_match = {
     game_match: {
-      player1_id: player1,
-      player2_id: player2,
+      player1_id: player1_id,
+      player2_id: player2_id,
       player1_score: score1,
-      player2_score: score2
+      player2_score: score2,
+      category_id: category_id,
     }
   }
 
@@ -25,7 +27,9 @@ export const postMatch = (player1, score1, player2, score2) => {
     return axios.post("/api/v1/matches", game_match)
       .then((response) => {
         var match = response.data.data;
-        dispatch(addMatch(match.id, match.player1, match.player1_score, match.player2, match.player2_score));
+        dispatch(
+          addMatch(match.id, match.player1, match.player1_score, match.player2, match.player2_score, match.category_id)
+        );
       });
   }
 }
@@ -44,11 +48,30 @@ export const receiveUsers = (users) => {
   }
 }
 
+export const receiveCategories = (categories) => {
+  return {
+    type: 'RECEIVE_CATEGORIES',
+    categories
+  }
+}
+
 export const fetchUsers = () => {
   return dispatch => {
     return axios.get("/api/v1/users")
       .then((response) => {
         dispatch(receiveUsers(response.data.data))
+      })
+      .catch((error) => {
+        console.log(error);
+      })
+  }
+}
+
+export const fetchCategories = () => {
+  return dispatch => {
+    return axios.get("/api/v1/categories")
+      .then((response) => {
+        dispatch(receiveCategories(response.data.data))
       })
       .catch((error) => {
         console.log(error);

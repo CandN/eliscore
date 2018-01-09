@@ -26,8 +26,9 @@ MatchList.propTypes = {
     player1: PropTypes.object.isRequired,
     player1_score: PropTypes.number.isRequired,
     player2: PropTypes.object.isRequired,
-    player2_score: PropTypes.number.isRequired
- }).isRequired).isRequired
+    player2_score: PropTypes.number.isRequired,
+    category_id: PropTypes.number,
+  }).isRequired).isRequired
 }
 
 export default MatchList

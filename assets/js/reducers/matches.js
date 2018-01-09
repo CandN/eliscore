@@ -22,7 +22,7 @@ const matches = (state = initialState, action) => {
   switch(action.type) {
     case 'ADD_MATCH':
       return Object.assign({}, state, {
-        matches: [...state.matches, match(undefined, action)]
+        matches: [match(undefined, action), ...state.matches]
       });
     case 'RECEIVE_MATCHES':
       return Object.assign({}, state, {
