@@ -7,7 +7,7 @@ defmodule EliscoreWeb.MatchController do
     matches = GameMatch
               |> GameMatch.newest
               |> Repo.all
-              |> Repo.preload([:player1, :player2])
+              |> Repo.preload([:player1, :player2, :category])
 
     conn
     |> put_status(:ok)
@@ -21,7 +21,7 @@ defmodule EliscoreWeb.MatchController do
 
     case Repo.insert(changeset) do
       {:ok, game_match} ->
-        match = Repo.preload(game_match, [:player1, :player2])
+        match = Repo.preload(game_match, [:player1, :player2, :category])
 
         conn
         |> put_status(:created)

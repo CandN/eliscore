@@ -32,6 +32,7 @@ defmodule EliscoreWeb.Router do
       options "/matches", MatchController, :nothing
 
       resources "/users", UserController, only: [:index, :show]
+      resources "/categories", CategoryController, only: [:index]
     end
   end
 

@@ -6,7 +6,8 @@ const match = (state, action) => {
         player1: action.player1,
         player1_score: action.player1_score,
         player2: action.player2,
-        player2_score: action.player2_score
+        player2_score: action.player2_score,
+        category_id: action.category_id,
       }
     default:
       return state
@@ -22,7 +23,7 @@ const matches = (state = initialState, action) => {
   switch(action.type) {
     case 'ADD_MATCH':
       return Object.assign({}, state, {
-        matches: [...state.matches, match(undefined, action)]
+        matches: [match(undefined, action), ...state.matches]
       });
     case 'RECEIVE_MATCHES':
       return Object.assign({}, state, {
