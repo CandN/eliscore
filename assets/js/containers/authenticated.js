@@ -5,8 +5,8 @@ import Actions          from '../actions/sessions';
 import MatchList        from '../components/match_list';
 import AddButton        from '../components/add_button';
 import NewMatchForm     from '../components/new_match_form';
-import { fetchMatches } from '../actions/index'
-import { fetchCategories } from '../actions/index'
+
+import { fetchMatches, fetchCategories, fetchUsers } from '../actions/index'
 
 class AuthenticatedContainer extends React.Component {
   constructor(props) {
@@ -18,9 +18,10 @@ class AuthenticatedContainer extends React.Component {
   }
 
   componentWillMount() {
-    const { dispatch } = this.props;
-    dispatch(fetchMatches());
-    dispatch(fetchCategories());
+    const { dispatch } = this.props
+    dispatch(fetchMatches())
+    dispatch(fetchCategories())
+    dispatch(fetchUsers())
   }
 
   componentDidMount() {
@@ -53,15 +54,15 @@ class AuthenticatedContainer extends React.Component {
 
 const mapStateToProps = (state) => {
   const matches = state.matches.matches.map(match => {
-    return match;
-  });
+    return match
+  })
 
   return {
     currentUser: state.session.currentUser,
     matches: matches,
     categories: state.categories.categories,
-    users: state.matches.users,
+    users: state.matches.users
   }
-};
+}
 
-export default connect(mapStateToProps)(AuthenticatedContainer);
+export default connect(mapStateToProps)(AuthenticatedContainer)
