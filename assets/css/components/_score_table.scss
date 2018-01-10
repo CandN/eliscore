@@ -68,8 +68,19 @@
     text-align: center;
     font-size: 30px;
     padding: 5px;
-    background-color: lighten($bg-color-primary, 10%);
     border-radius: 15%;
+  }
+
+  &__score_win {
+    background-color: #04A777; // GREEN (MUNSELL)
+  }
+
+  &__score_lost {
+    background-color: #D90368; // DOGWOOD ROSE
+  }
+
+  &__score_draw {
+    background-color: lighten($bg-color-primary, 10%);
   }
 
   &__name {
