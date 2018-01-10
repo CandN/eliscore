@@ -1,4 +1,5 @@
 import axios from 'axios';
+import { normalize, schema } from 'normalizr';
 
 export const addMatch = (id, player1, score1, player2, score2, category_id) => {
   return {
@@ -71,7 +72,10 @@ export const fetchCategories = () => {
   return dispatch => {
     return axios.get("/api/v1/categories")
       .then((response) => {
-        dispatch(receiveCategories(response.data.data))
+        const category_schema = new schema.Entity('categories');
+        const data = normalize(response.data.data, [ category_schema ]);
+
+        dispatch(receiveCategories(data.entities.categories));
       })
       .catch((error) => {
         console.log(error);
