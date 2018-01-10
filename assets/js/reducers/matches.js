@@ -6,7 +6,8 @@ const match = (state, action) => {
         player1: action.player1,
         player1_score: action.player1_score,
         player2: action.player2,
-        player2_score: action.player2_score
+        player2_score: action.player2_score,
+        category_id: action.category_id,
       }
     default:
       return state

@@ -12,5 +12,5 @@ export default combineReducers({
   registration: registration,
   matches: matches,
   users: users,
-  categories: categories,
+  categories: categories
 });

@@ -5,12 +5,10 @@ const initialState = {
 const categories= (state = initialState, action) => {
   switch(action.type) {
   case 'RECEIVE_CATEGORIES':
-    return Object.assign({}, state, {
-      categories: action.categories,
-    });
+    return Object.assign({}, state, { categories: action.categories });
   default:
-    return state
+    return state;
   }
-}
+};
 
-export default categories
+export default categories;
