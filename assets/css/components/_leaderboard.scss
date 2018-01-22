@@ -1,0 +1,27 @@
+.leaderboard {
+  font-size: 18px;
+  padding: 20px 30px;
+
+  &__players-list {
+    list-style: none;
+    padding-left: 0;
+  }
+
+  &__player {
+    border-bottom: 5px solid $tertiary-color;
+    border-left: 5px solid $tertiary-color;
+    padding-bottom: 0;
+  }
+
+  &__position {
+    background: $tertiary-color;
+    display: inline-block;
+    font-size: 20px;
+    font-weight: bold;
+    height: 32px;
+    line-height: 34px;
+    margin-right: 8px;
+    text-align: center;
+    width: 40px;
+  }
+}
