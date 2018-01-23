@@ -1,0 +1,19 @@
+.notification-box {
+  background: #0f1013;
+  border: 4px #0f1013 solid;
+  height: 100px;
+  left: -281px;
+  padding-left: 7px;
+  position: absolute;
+  top: 10px;
+  width: 250px;
+
+  &__header {
+    font-weight: bold;
+    text-decoration: underline;
+  }
+
+  &__body {
+    margin-top: 15px;
+  }
+}
