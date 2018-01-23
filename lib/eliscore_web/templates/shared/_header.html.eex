@@ -3,7 +3,7 @@
     <li class="menu__item menu__item--left active"><a href="/" class="">eliscore</a></li>
     <li class="menu__item">
       <a href="#" class="">Profile <span class="glyphicon glyphicon-menu-down" aria-hidden="true"></span></a></li>
-    <li class="menu__item"><a href="#" class="menu__item__link">Leaderboards</a></li>
+    <li class="menu__item"><a href="/leaderboard" class="menu__item__link">Leaderboards</a></li>
     <li class="meny__item"><a href="/live">Live Game</a></li>
   </ul>
 </div>

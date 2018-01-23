@@ -5,7 +5,8 @@ import Actions          from '../actions/sessions';
 import MatchList        from '../components/match_list';
 import AddButton        from '../components/add_button';
 import NewMatchForm     from '../components/new_match_form';
-import { fetchMatches } from '../actions/index'
+
+import { fetchMatches, fetchCategories, fetchUsers } from '../actions/index'
 
 class AuthenticatedContainer extends React.Component {
   constructor(props) {
@@ -17,8 +18,10 @@ class AuthenticatedContainer extends React.Component {
   }
 
   componentWillMount() {
-    const { dispatch } = this.props;
-    dispatch(fetchMatches());
+    const { dispatch } = this.props
+    dispatch(fetchMatches())
+    dispatch(fetchCategories())
+    dispatch(fetchUsers())
   }
 
   componentDidMount() {
@@ -33,16 +36,17 @@ class AuthenticatedContainer extends React.Component {
 
   handleClick() {
     this.setState({showForm: !this.state.showForm});
+    window.scrollTo(0, 0)
   }
 
   render() {
-    const { matches, dispatch, users, currentUser} = this.props;
+    const { matches, categories, dispatch, users, currentUser} = this.props;
 
     return (
       <div>
-        <MatchList matches={matches}/>
         <AddButton text="add new match" onclick={this.handleClick}/>
-        { this.state.showForm ? <NewMatchForm dispatch={dispatch} users={users} currentUser={currentUser}/> : null }
+        { this.state.showForm ? <NewMatchForm dispatch={dispatch} users={users} currentUser={currentUser} categories={categories}/> : null }
+        <MatchList matches={matches} categories={categories}/>
       </div>
     )
   }
@@ -50,14 +54,15 @@ class AuthenticatedContainer extends React.Component {
 
 const mapStateToProps = (state) => {
   const matches = state.matches.matches.map(match => {
-    return match;
-  });
+    return match
+  })
 
   return {
     currentUser: state.session.currentUser,
     matches: matches,
-    users: state.matches.users,
+    categories: state.categories.categories,
+    users: state.matches.users
   }
-};
+}
 
-export default connect(mapStateToProps)(AuthenticatedContainer);
+export default connect(mapStateToProps)(AuthenticatedContainer)

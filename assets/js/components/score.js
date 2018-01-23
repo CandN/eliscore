@@ -1,14 +1,24 @@
 import React from 'react'
-import PropTypes from 'prop-types'
 
-const Score = ({ score }) => (
-  <div className="player__score col-xs-1">
-    {score}
-  </div>
-)
+class Score extends React.Component {
+  render () {
+    const { score, opponentScore } = this.props
 
-Score.propTypes = {
-  score: PropTypes.number.isRequired,
+    let scoreClass
+    if (score === opponentScore) {
+      scoreClass = 'draw'
+    } else if (score < opponentScore) {
+      scoreClass = 'lost'
+    } else {
+      scoreClass = 'win'
+    }
+
+    return (
+      <div className={'player__score_' + scoreClass + ' col-xs-1 player__score'}>
+        {score}
+      </div>
+    )
+  }
 }
 
 export default Score

@@ -5,6 +5,7 @@ import RegistrationsNew             from '../views/registrations/new';
 import LiveStream                   from '../components/live_stream';
 import SessionsNew                  from '../views/sessions/new';
 import UserShow                     from '../views/users/show';
+import Leaderboard                  from '../views/users/leaderboard';
 import Actions                      from '../actions/sessions';
 import AuthenticatedContainer       from '../containers/authenticated';
 
@@ -30,6 +31,7 @@ export default function configRoutes(store) {
       <Route path="/live" component={LiveStream} />
       <Route path="/" component={AuthenticatedContainer} onEnter={_ensureAuthenticated} />
       <Route path="/users/:username" component={UserShow} />
+      <Route path="/leaderboard" component={Leaderboard} />
     </Route>
   );
 }

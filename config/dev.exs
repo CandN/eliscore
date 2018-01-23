@@ -52,8 +52,6 @@ config :phoenix, :stacktrace_depth, 20
 # Configure your database
 config :eliscore, Eliscore.Repo,
   adapter: Ecto.Adapters.Postgres,
-  username: "eliscore",
-  password: "eliscore",
   database: "eliscore_dev",
   hostname: "localhost",
   pool_size: 10

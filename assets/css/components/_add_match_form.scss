@@ -3,6 +3,26 @@
   margin: 100px auto 150px;
 
   &__button {
+    padding: 10px 15px;
+    cursor: pointer;
+    border-radius: 10%;
+    transition: 0.2s linear;
+    background-color: darken($bg-color-primary, 5%);
+
+    &:hover {
+      transform: scale(1.1);
+      background-color: grey;
+      color: $color-black;
+    }
+  }
+
+  &__button_div {
+    width: 30%;
+    margin: 0 auto;
+    margin-top: 14px;
+  }
+
+  &__category {
     width: 30%;
     margin: 0 auto;
   }

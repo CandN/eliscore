@@ -10,18 +10,19 @@ defmodule Eliscore.GameMatch do
     field :player1_score, :integer
     belongs_to :player2, Eliscore.User, foreign_key: :player2_id
     field :player2_score, :integer
+    belongs_to :category, Eliscore.Model.Category, foreign_key: :category_id
 
     timestamps()
   end
 
-  @required_fields ~w(player1_id player1_score player2_id player2_score)a
-  @optional_fields ~w(accepted)a
+  @permitted_params ~w(player1_id player1_score player2_id player2_score category_id accepted)a
+  @required_params ~w(player1_id player1_score player2_id player2_score)a
 
   @doc false
   def changeset(%GameMatch{} = game_match, attrs) do
     game_match
-    |> cast(attrs, @required_fields, @optional_fields)
-    |> validate_required([:player1_id, :player1_score, :player2_id, :player2_score])
+    |> cast(attrs, @permitted_params)
+    |> validate_required(@required_params)
 
   end
 

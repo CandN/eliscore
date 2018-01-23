@@ -9,3 +9,6 @@
 #
 # We recommend using the bang functions (`insert!`, `update!`
 # and so on) as they will fail if something goes wrong.
+
+Eliscore.Model.create_category(%{name: "FIFA"})
+Eliscore.Model.create_category(%{name: "Fusball"})
