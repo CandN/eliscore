@@ -8,9 +8,9 @@ class Leaderboard extends React.Component {
       leaderboard: [],
     }
   }
-  
+
   componentDidMount() {
-    axios.get('/api/v1/users')
+    axios.get('/api/v1/leaderboard')
       .then(response => {
         let players = response.data.data;
         this.setState({ leaderboard: players });
@@ -26,9 +26,9 @@ class Leaderboard extends React.Component {
         <ul className='leaderboard__players-list'>
           { this.state.leaderboard.map((player, i) => {
               return (
-                <li className="leaderboard__player">
+                <li key={i} className="leaderboard__player">
                   <span className='leaderboard__position'>{i + 1}</span>
-                  {player.full_name}
+                  {player.full_name}, games won: {player.wins}
                 </li>
               )
             })
