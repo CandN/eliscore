@@ -14,8 +14,3 @@ defmodule EliscoreWeb.LeaderboardController do
     |> render("index.json", players: players)
   end
 end
-
-# select from game_matches where (player1_score > player2_score) OR (player2_score > player1_score) joins players on players.id=game_matches.player_id
-#
-# select * fom game_matches where (player1_score > player2_score and player_
-#select count(CASE WHEN player1_score > player2_score THEN player1_id ELSE player2_id END) as wins, CASE WHEN player1_score > player2_score THEN u.full_name ELSE u2.full_name END as winner from game_matches gm join users u on gm.player1_id=u.id join users u2 on gm.player2_id=u2.id group by winner;
