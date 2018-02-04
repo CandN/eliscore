@@ -1,21 +1,29 @@
 .leaderboard {
+  display: flex;
   font-size: 18px;
+  justify-content: center;
   padding: 20px 30px;
 
   &__players-list {
     list-style: none;
     padding-left: 0;
+
+    th {
+      min-width: 70px;
+      text-align: center;
+    }
   }
 
   &__player {
     border-bottom: 5px solid $tertiary-color;
-    border-left: 5px solid $tertiary-color;
     padding-bottom: 0;
+    text-align: center;
   }
 
   &__position {
     background: $tertiary-color;
     display: inline-block;
+    float: left;
     font-size: 20px;
     font-weight: bold;
     height: 32px;

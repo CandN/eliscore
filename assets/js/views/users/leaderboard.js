@@ -1,42 +1,59 @@
-import React from 'react';
-import axios from 'axios';
+import React from 'react'
+import axios from 'axios'
 
 class Leaderboard extends React.Component {
-  constructor(props) {
-    super(props);
+  constructor (props) {
+    super(props)
     this.state = {
-      leaderboard: [],
+      leaderboard: []
     }
   }
 
-  componentDidMount() {
+  componentDidMount () {
     axios.get('/api/v1/leaderboard')
       .then(response => {
-        let players = response.data.data;
-        this.setState({ leaderboard: players });
+        let players = response.data.data
+        this.setState({ leaderboard: players })
       })
       .catch(error => {
-        console.log(error);
-      });
+        console.log(error)
+      })
   }
 
-  render() {
+  render () {
     return (
       <div className='leaderboard'>
-        <ul className='leaderboard__players-list'>
-          { this.state.leaderboard.map((player, i) => {
+        <table>
+          <thead>
+            <tr className='leaderboard__players-list'>
+              <th></th>
+              <th>Name</th>
+              <th>Played</th>
+              <th>Won</th>
+              <th>Lost</th>
+              <th>Drawn</th>
+              <th>Points</th>
+            </tr>
+          </thead>
+          <tbody>
+            { this.state.leaderboard.map((player, i) => {
               return (
-                <li key={i} className="leaderboard__player">
-                  <span className='leaderboard__position'>{i + 1}</span>
-                  {player.full_name}, games won: {player.wins}
-                </li>
+                <tr key={i} className="leaderboard__player">
+                  <td className='leaderboard__position'>{i + 1}</td>
+                  <td>{player.full_name}</td>
+                  <td>{player.all_games}</td>
+                  <td>{player.wins}</td>
+                  <td>{player.loses}</td>
+                  <td>{player.draws}</td>
+                  <td>{player.points}</td>
+                </tr>
               )
-            })
-          }
-        </ul>
+            })}
+          </tbody>
+        </table>
       </div>
-    );
+    )
   }
 }
 
-export default Leaderboard;
+export default Leaderboard
