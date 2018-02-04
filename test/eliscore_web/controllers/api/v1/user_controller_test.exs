@@ -3,55 +3,60 @@ defmodule EliscoreWeb.UserControllerTest do
   alias Eliscore.{Repo, User}
 
   test "index/2 responds with all Users" do
-    users = [ 
+    users = [
       User.changeset(
         %User{},%{
-          full_name: "John Doe", 
-          first_name: "John", 
-          last_name: "Doe", 
+          full_name: "John Doe",
+          first_name: "John",
+          last_name: "Doe",
           image_url: "image/url",
           uuid: "11111111",
-          email: "test1@test.test", 
+          email: "test1@test.test",
           password: "password"
         }),
       User.changeset(
         %User{},%{
-          full_name: "Dohn Joe", 
-          first_name: "Dohn", 
-          last_name: "Joe", 
+          full_name: "Dohn Joe",
+          first_name: "Dohn",
+          last_name: "Joe",
           image_url: "image/url",
           uuid: "11111111",
-          email: "test2@test.test", 
+          email: "test2@test.test",
           password: "password"
         })]
 
     Enum.each(users, &Repo.insert!(&1))
-    user_1 = Repo.get_by(User, first_name: "John")
-    user_2 = Repo.get_by(User, first_name: "Dohn")
+
     response = build_conn()
                |> get(user_path(build_conn(), :index))
                |> json_response(200)
 
-    expected = %{
+    assert %{
       "data" => [
-        %{"full_name" => "John Doe", "id" => user_1.id, "email" => "test1@test.test"},
-        %{"full_name" => "Dohn Joe", "id" => user_2.id, "email" => "test2@test.test"}
+        %{
+          "full_name" => "John Doe",
+          "image_url" => "image/url",
+          "email" => "test1@test.test"
+        },
+        %{
+          "full_name" => "Dohn Joe",
+          "image_url" => "image/url",
+          "email" => "test2@test.test"
+        }
       ]
-    }
-
-    assert response == expected
+    } = response
   end
 
   describe "show/2" do
     test "responds with one User" do
       User.changeset(
         %User{}, %{
-          full_name: "John Doe", 
-          first_name: "John", 
-          last_name: "Doe", 
+          full_name: "John Doe",
+          first_name: "John",
+          last_name: "Doe",
           image_url: "image/url",
           uuid: "11111111",
-          email: "test3@test.test", 
+          email: "test3@test.test",
           password: "password"
         })
         |> Repo.insert!
@@ -62,8 +67,13 @@ defmodule EliscoreWeb.UserControllerTest do
                  |> get(user_path(build_conn(), :show, user_1))
                  |> json_response(200)
 
-      expected = %{ "data" => %{"full_name" => "John Doe", "id" => user_1.id, "email" => "test3@test.test" }}
-      assert response == expected
+      assert %{
+        "data" => %{
+          "full_name" => "John Doe",
+          "image_url" => "image/url",
+          "email" => "test3@test.test"
+        }
+      } = response
     end
 
     test "responds with a message User not found " do

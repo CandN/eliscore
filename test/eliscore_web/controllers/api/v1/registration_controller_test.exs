@@ -6,10 +6,11 @@ defmodule EliscoreWeb.RegistrationControllerTest do
     test "returns jwt and user in response" do
       user_params = %{
         "user" => %{
-          "full_name" => "John Doe", 
-          "first_name" => "John", 
-          "last_name" => "Doe", 
-          "email" => "t@test.pl", 
+          "full_name" => "John Doe",
+          "first_name" => "John",
+          "last_name" => "Doe",
+          "email" => "t@test.pl",
+          "image_url" => "some/url",
           "uuid" => "123456789"
         }
       }
@@ -23,7 +24,16 @@ defmodule EliscoreWeb.RegistrationControllerTest do
     end
 
     test "returns error when wrong changeset provided" do
-      user_params = %{"user" => %{}}
+      user_params = %{
+        "user" => %{
+          "full_name" => "",
+          "first_name" => "",
+          "last_name" => "",
+          "email" => "abc",
+          "image_url" => "",
+          "uuid" => ""
+        }
+      }
       response = build_conn()
                  |> RegistrationController.create(user_params)
 
