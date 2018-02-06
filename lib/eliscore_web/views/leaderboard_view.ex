@@ -2,18 +2,22 @@ defmodule EliscoreWeb.LeaderboardView do
   use EliscoreWeb, :view
   alias EliscoreWeb.LeaderboardView
 
-  def render("index.json", %{players: players}) do
-    %{data: render_many(players, LeaderboardView, "player.json")}
+  def render("fifa.json", %{player_stats: player_stats}) do
+    %{data: render_many(player_stats, LeaderboardView, "player.json")}
   end
 
-  def render("player.json", %{leaderboard: player}) do
+  def render("fusball.json", %{player_stats: player_stats}) do
+    %{data: render_many(player_stats, LeaderboardView, "player.json")}
+  end
+
+  def render("player.json", %{leaderboard: player_stat}) do
     %{
-      full_name: player.full_name,
-      wins: player.wins,
-      loses: player.loses,
-      draws: player.draws,
-      all_games: player.all_games,
-      points: player.points
+      full_name: player_stat.full_name,
+      wins: player_stat.wins,
+      loses: player_stat.loses,
+      draws: player_stat.draws,
+      all_games: player_stat.all_games,
+      points: player_stat.points
     }
   end
 

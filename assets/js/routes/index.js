@@ -6,6 +6,8 @@ import LiveStream                   from '../components/live_stream';
 import SessionsNew                  from '../views/sessions/new';
 import UserShow                     from '../views/users/show';
 import Leaderboard                  from '../views/users/leaderboard';
+import LeaderboardFifa              from '../views/users/leaderboard_fifa';
+import LeaderboardFusball           from '../views/users/leaderboard_fusball';
 import Actions                      from '../actions/sessions';
 import AuthenticatedContainer       from '../containers/authenticated';
 
@@ -32,6 +34,8 @@ export default function configRoutes(store) {
       <Route path="/" component={AuthenticatedContainer} onEnter={_ensureAuthenticated} />
       <Route path="/users/:username" component={UserShow} />
       <Route path="/leaderboard" component={Leaderboard} />
+      <Route path="/leaderboard/fifa" component={LeaderboardFifa} />
+      <Route path="/leaderboard/fusball" component={LeaderboardFusball} />
     </Route>
   );
 }

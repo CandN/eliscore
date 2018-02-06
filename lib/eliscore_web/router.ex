@@ -31,7 +31,8 @@ defmodule EliscoreWeb.Router do
       post "/matches", MatchController, :create
       options "/matches", MatchController, :nothing
 
-      get "/leaderboard", LeaderboardController, :index
+      get "/leaderboard/fifa", LeaderboardController, :fifa
+      get "/leaderboard/fusball", LeaderboardController, :fusball
 
       resources "/users", UserController, only: [:index, :show]
       resources "/categories", CategoryController, only: [:index]
