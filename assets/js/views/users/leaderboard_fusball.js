@@ -32,7 +32,6 @@ class LeaderboardFusball extends React.Component {
                 <th>Played</th>
                 <th>Won</th>
                 <th>Lost</th>
-                <th>Drawn</th>
                 <th>Points</th>
               </tr>
             </thead>
@@ -45,7 +44,6 @@ class LeaderboardFusball extends React.Component {
                     <td>{player.all_games}</td>
                     <td>{player.wins}</td>
                     <td>{player.loses}</td>
-                    <td>{player.draws}</td>
                     <td>{player.points}</td>
                   </tr>
                 )
