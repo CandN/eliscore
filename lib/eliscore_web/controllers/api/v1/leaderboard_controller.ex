@@ -1,23 +1,49 @@
 defmodule EliscoreWeb.LeaderboardController do
   use EliscoreWeb, :controller
 
-  alias Eliscore.{ GameMatch, Repo }
+  alias Eliscore.{ User, Repo }
   import Ecto.Query, only: [from: 2]
 
   def index(conn, _params) do
-    q = from gm in GameMatch,
+    q = from u in User,
     select: %{
-      wins: fragment("COUNT(CASE WHEN player1_score > player2_score THEN player1_id ELSE player2_id END) as wins"),
-      winner: fragment("CASE WHEN player1_score > player2_score THEN u1.full_name ELSE u2.full_name END as winner")},
-     join: u in assoc(gm, :player1),
-     join: u2 in assoc(gm, :player2),
-     group_by: fragment("winner"),
-     order_by: fragment("wins DESC")
+      full_name: u.full_name,
+      wins: fragment("(
+        SELECT COUNT(*)
+        FROM game_matches
+        WHERE (player1_id = u0.id AND player1_score > player2_score)
+          OR (player2_id = u0.id AND player2_score > player1_score)
+        ) AS wins"),
+      loses: fragment("(
+        SELECT COUNT(*)
+        FROM game_matches
+        WHERE (player1_id = u0.id AND player1_score < player2_score)
+           OR (player2_id = u0.id AND player2_score < player1_score)
+        ) AS loses"),
+      draws: fragment("(
+        SELECT COUNT(*)
+        FROM game_matches
+        WHERE player1_score = player2_score
+          AND (player1_id = u0.id OR player2_id = u0.id)
+        ) AS draws"),
+      all_games: fragment("(
+        SELECT COUNT(*)
+        FROM game_matches
+        WHERE (player1_id = u0.id)
+           OR (player2_id = u0.id)
+        ) AS all_games")
+    }
 
     players = Repo.all(q)
+    |> Enum.map(&add_points_to_player/1)
+    |> Enum.sort_by(fn(map) -> {-map.points, map.all_games} end)
 
     conn
     |> put_status(:ok)
     |> render("index.json", players: players)
+  end
+
+  defp add_points_to_player(player_stats = %{wins: wins, draws: draws}) do
+    Map.put(player_stats, :points, 3 * wins + draws)
   end
 end

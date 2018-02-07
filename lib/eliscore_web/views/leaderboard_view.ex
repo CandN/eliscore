@@ -7,7 +7,14 @@ defmodule EliscoreWeb.LeaderboardView do
   end
 
   def render("player.json", %{leaderboard: player}) do
-    %{full_name: player.winner, wins: player.wins}
+    %{
+      full_name: player.full_name,
+      wins: player.wins,
+      loses: player.loses,
+      draws: player.draws,
+      all_games: player.all_games,
+      points: player.points
+    }
   end
 
   def render("error.json", _) do

@@ -1,8 +1,11 @@
 defmodule EliscoreWeb.MatchControllerTest do
   use EliscoreWeb.ConnCase, async: true
-  alias Eliscore.{Repo, User, GameMatch}
+  alias Eliscore.{Repo, Model.Category, User, GameMatch}
 
   test "index/2 responds with all GameMatches" do
+    category = Category.changeset(%Category{}, %{name: "fusball"})
+    |> Repo.insert!
+
     users = [
       User.changeset(
         %User{},%{
@@ -29,9 +32,28 @@ defmodule EliscoreWeb.MatchControllerTest do
     user_1 = Repo.get_by(User, first_name: "John")
     user_2 = Repo.get_by(User, first_name: "Dohn")
 
-    matches = [ GameMatch.changeset(%GameMatch{},%{player1_id: user_1.id, player1_score: 10, player2_id: user_2.id, player2_score: 9}),
-              GameMatch.changeset(%GameMatch{},%{player1_id: user_1.id, player1_score: 0, player2_id: user_2.id, player2_score: 10})]
+    matches = [
+      GameMatch.changeset(
+        %GameMatch{},%{
+          player1_id: user_1.id,
+          player1_score: 10,
+          player2_id: user_2.id,
+          player2_score: 9,
+          category_id: category.id
+        }
+      ),
+      GameMatch.changeset(
+        %GameMatch{},%{
+          player1_id: user_1.id,
+          player1_score: 0,
+          player2_id: user_2.id,
+          player2_score: 10,
+          category_id: category.id
+        }
+      )]
+
     Enum.each(matches, &Repo.insert!(&1))
+
     match_1 = Repo.get_by(GameMatch, player1_score: 10)
     match_2 = Repo.get_by(GameMatch, player1_score: 0)
 
@@ -47,12 +69,18 @@ defmodule EliscoreWeb.MatchControllerTest do
           "player1_score" => match_2.player1_score,
           "player2_score" => match_2.player2_score,
           "player1" => %{
-            "id" => user_1.id, "full_name" => user_1.full_name, "email" => user_1.email, "image_url" => "image/url"
+            "id" => user_1.id,
+            "full_name" => user_1.full_name,
+            "image_url" => "image/url",
+            "email" => user_1.email
           },
           "player2" => %{
-            "id" => user_2.id, "full_name" => user_2.full_name, "email" => user_2.email, "image_url" => "image/url"
+            "id" => user_2.id,
+            "full_name" => user_2.full_name,
+            "image_url" => "image/url",
+            "email" => user_2.email
           },
-          "category_id" => nil
+          "category_id" => category.id
         },
         %{
           "accepted" => false,
@@ -60,12 +88,18 @@ defmodule EliscoreWeb.MatchControllerTest do
           "player1_score" => match_1.player1_score,
           "player2_score" => match_1.player2_score,
           "player1" => %{
-            "id" => user_1.id, "full_name" => user_1.full_name, "email" => user_1.email, "image_url" => "image/url"
+            "id" => user_1.id,
+            "full_name" => user_1.full_name,
+            "image_url" => "image/url",
+            "email" => user_1.email
           },
           "player2" => %{
-            "id" => user_2.id, "full_name" => user_2.full_name, "email" => user_2.email, "image_url" => "image/url"
+            "id" => user_2.id,
+            "full_name" => user_2.full_name,
+            "image_url" => "image/url",
+            "email" => user_2.email
           },
-          "category_id" => nil
+          "category_id" => category.id
         }
       ]
     }
