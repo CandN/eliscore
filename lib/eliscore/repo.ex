@@ -1,5 +1,6 @@
 defmodule Eliscore.Repo do
   use Ecto.Repo, otp_app: :eliscore
+  use Scrivener, page_size: 15
 
   @doc """
   Dynamically loads the repository url from the

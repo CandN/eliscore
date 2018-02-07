@@ -1,13 +1,14 @@
 defmodule EliscoreWeb.MatchController do
   use EliscoreWeb, :controller
+  import Ecto.Query
 
   alias Eliscore.{ GameMatch, Repo }
 
-  def index(conn, _params) do
+  def index(conn, params) do
     matches = GameMatch
               |> GameMatch.newest
-              |> Repo.all
-              |> Repo.preload([:player1, :player2, :category])
+              |> preload([:player1, :player2, :category])
+              |> Repo.paginate(params)
 
     conn
     |> put_status(:ok)

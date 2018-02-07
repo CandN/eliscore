@@ -49,7 +49,8 @@ defmodule Eliscore.Mixfile do
       {:cowlib, "~> 1.0.2"},
       {:logger_file_backend, "~> 0.0.10"},
       {:poison, "~> 3.1"},
-      {:ex_machina, "~> 2.1", only: :test}
+      {:ex_machina, "~> 2.1", only: :test},
+      {:scrivener_ecto, "~> 1.0"},
     ]
   end
 
