@@ -1,6 +1,9 @@
 import React        from 'react';
+import ReactDOM     from 'react-dom';
 import fetch        from 'isomorphic-fetch';
 import { polyfill } from 'es6-promise';
+
+import NotificationBox from '../components/notification_box';
 
 const defaultHeaders = {
   Accept: 'application/json',
@@ -74,4 +77,9 @@ export function renderErrorsFor(errors, ref) {
       );
     }
   });
+}
+
+export function notify(header, body) {
+  let target = document.getElementById('notify-wrapper');
+  ReactDOM.render(<NotificationBox header={header} body={body} />, target);
 }
