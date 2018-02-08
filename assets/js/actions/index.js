@@ -1,5 +1,6 @@
 import axios from 'axios';
 import { normalize, schema } from 'normalizr';
+import { notify } from '../utils';
 
 export const addMatch = (id, player1, score1, player2, score2, category_id) => {
   return {
@@ -31,6 +32,7 @@ export const postMatch = (player1_id, score1, player2_id, score2, category_id) =
         dispatch(
           addMatch(match.id, match.player1, match.player1_score, match.player2, match.player2_score, match.category_id)
         );
+        notify('Added a match', 'Successfully added a match');
       });
   }
 }
