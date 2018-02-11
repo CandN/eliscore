@@ -2,9 +2,16 @@ import axios from 'axios';
 import { normalize, schema } from 'normalizr';
 import { notify } from '../utils';
 
+import {
+  ADD_MATCH,
+  RECEIVE_CATEGORIES,
+  RECEIVE_MATCHES,
+  RECEIVE_USERS,
+} from '../actionTypes';
+
 export const addMatch = (id, player1, score1, player2, score2, category_id) => {
   return {
-    type: 'ADD_MATCH',
+    type: ADD_MATCH,
     id: id,
     player1: player1,
     player1_score: score1,
@@ -39,21 +46,21 @@ export const postMatch = (player1_id, score1, player2_id, score2, category_id) =
 
 export const receiveMatches = (matches) => {
   return {
-    type: 'RECEIVE_MATCHES',
+    type: RECEIVE_MATCHES,
     matches
   }
 }
 
 export const receiveUsers = (users) => {
   return {
-    type: 'RECEIVE_USERS',
+    type: RECEIVE_USERS,
     users
   }
 }
 
 export const receiveCategories = (categories) => {
   return {
-    type: 'RECEIVE_CATEGORIES',
+    type: RECEIVE_CATEGORIES,
     categories
   }
 }
