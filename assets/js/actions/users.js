@@ -1,6 +1,8 @@
 import axios from 'axios';
 import { push }      from 'react-router-redux';
 
+import { RECEIVE_USER } from '../actionTypes';
+
 const Actions = {
   fetchUser: (username, users) => {
     return dispatch => {
@@ -16,7 +18,7 @@ const Actions = {
   },
   receiveUser: (user) => {
     return {
-      type: 'RECEIVE_USER',
+      type: RECEIVE_USER,
       user
     }
   }
