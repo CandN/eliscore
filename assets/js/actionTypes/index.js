@@ -1,4 +1,4 @@
-export const ADD_MATCH= 'ADD_MATCH';
+export const ADD_MATCH = 'ADD_MATCH';
 export const RECEIVE_CATEGORIES = 'RECEIVE_CATEGORIES';
 export const RECEIVE_MATCHES = 'RECEIVE_MATCHES';
 export const RECEIVE_USERS = 'RECEIVE_USERS';
