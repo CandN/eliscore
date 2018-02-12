@@ -9,7 +9,7 @@ class MatchList extends React.Component {
     
     this.state = {
       currentPage: 1,
-      itemsPerPage: 3,
+      itemsPerPage: 10,
     }
   }
   

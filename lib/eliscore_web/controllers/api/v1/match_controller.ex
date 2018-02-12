@@ -8,7 +8,7 @@ defmodule EliscoreWeb.MatchController do
     matches = GameMatch
               |> GameMatch.newest
               |> preload([:player1, :player2, :category])
-              |> Repo.paginate(params)
+              |> Repo.all
 
     conn
     |> put_status(:ok)
