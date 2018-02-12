@@ -8,6 +8,8 @@ defmodule EliscoreWeb.MatchController do
     matches = GameMatch
               |> GameMatch.newest
               |> preload([:player1, :player2, :category])
+              # TODO: Backend pagination temporarily disabled
+              # |> Repo.paginate(params)
               |> Repo.all
 
     conn
