@@ -1,8 +1,11 @@
 import { push }                               from 'react-router-redux';
-import Constants                              from '../constants';
 import { Socket }                             from 'phoenix';
 import { httpGet, httpPost, httpDelete }      from '../utils';
 
+import {
+  CURRENT_USER,
+  SESSIONS_ERROR,
+} from '../actionTypes';
 
 export function setCurrentUser(dispatch, user) {
   const socket = new Socket('/socket', {
@@ -17,7 +20,7 @@ export function setCurrentUser(dispatch, user) {
   if (channel.state != 'joined') {
     channel.join().receive('ok', () => {
       dispatch({
-        type: Constants.CURRENT_USER,
+        type: CURRENT_USER,
         currentUser: user,
         socket: socket,
         channel: channel,
@@ -46,7 +49,7 @@ const Actions = {
         error.response.json()
         .then((errorJSON) => {
           dispatch({
-            type: Constants.SESSIONS_ERROR,
+            type: SESSIONS_ERROR,
             error: errorJSON.error,
           });
         });
