@@ -1,0 +1,19 @@
+.pagination {
+  width: $default-width;
+  margin-top: 25px;
+  text-align: center;
+
+  &__item {
+    &:hover {
+      background: $white;
+    }
+
+    &--active {
+      background: $tertiary-color;
+  
+      &:hover {
+        background: $tertiary-color;
+      }
+    }
+  }
+}
