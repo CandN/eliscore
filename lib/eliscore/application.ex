@@ -14,6 +14,7 @@ defmodule Eliscore.Application do
       supervisor(EliscoreWeb.Endpoint, []),
       # Start your own worker by calling: Eliscore.Worker.start_link(arg1, arg2, arg3)
       # worker(Eliscore.Worker, [arg1, arg2, arg3]),
+      supervisor(EliscoreWeb.Presence, []),
     ]
 
     # See https://hexdocs.pm/elixir/Supervisor.html

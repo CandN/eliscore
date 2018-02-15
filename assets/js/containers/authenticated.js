@@ -5,6 +5,7 @@ import Actions          from '../actions/sessions';
 import MatchList        from '../components/match_list';
 import AddButton        from '../components/add_button';
 import NewMatchForm     from '../components/new_match_form';
+import EliscoreChat     from './eliscore_chat';
 
 import { fetchMatches, fetchCategories, fetchUsers } from '../actions/index'
 
@@ -40,13 +41,14 @@ class AuthenticatedContainer extends React.Component {
   }
 
   render() {
-    const { matches, categories, dispatch, users, currentUser} = this.props;
+    const { matches, categories, dispatch, users, currentUser, socket } = this.props;
 
     return (
       <div>
         <AddButton text="add new match" onclick={this.handleClick}/>
         { this.state.showForm ? <NewMatchForm dispatch={dispatch} users={users} currentUser={currentUser} categories={categories}/> : null }
         <MatchList matches={matches} categories={categories}/>
+        <EliscoreChat />
       </div>
     )
   }

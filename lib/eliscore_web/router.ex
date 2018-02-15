@@ -33,6 +33,7 @@ defmodule EliscoreWeb.Router do
 
       get "/leaderboard", LeaderboardController, :index
 
+      get "/channel", ChannelsController, :index
       resources "/users", UserController, only: [:index, :show]
       resources "/categories", CategoryController, only: [:index]
     end

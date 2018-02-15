@@ -33,11 +33,8 @@ defmodule Eliscore.Auth do
 
   defp params_map(params) do
     %{
-      first_name: params["first_name"],
-      last_name: params["last_name"],
       email: params["email"],
       uuid: params["uuid"],
-      full_name: params["full_name"]
     }
   end
 

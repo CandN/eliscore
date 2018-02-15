@@ -1,0 +1,53 @@
+.chat {
+  &-wrapper {
+    height: 50px;
+    width: 300px;
+    background-color: red;
+    text-align: center;
+
+    &--opened {
+      height: 400px;
+    }
+  }
+
+  &-userlist {
+    list-style-type: none;
+  }
+
+  &-user {
+    margin: 5px 0;
+    font-size: 13px;
+    background: green;
+  }
+
+  &-room {
+    background-color: blue;
+    width: 200px;
+    height: 300px;
+    margin-left: 15px;
+  }
+
+  &-messages {
+    height: 254px;
+    overflow: scroll;
+  }
+
+  &-input {
+    width: 100%;
+  }
+}
+
+.divider {
+  display: inline-block;
+  width: 100%;
+  border-bottom: 1px solid black;
+}
+
+.chatrooms {
+  display: flex;
+  height: 300px;
+  width: 100%;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+}
