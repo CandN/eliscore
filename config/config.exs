@@ -22,12 +22,11 @@ config :logger, :console,
   format: "$time $metadata[$level] $message\n",
   metadata: [:request_id]
 
-config :guardian, Guardian,
+config :eliscore, Eliscore.Guardian,
   issuer: "Eliscore",
   ttl: { 3, :days },
   verify_issuer: true,
-  secret_key: "ajaha",
-  serializer: Eliscore.GuardianSerializer
+  secret_key: "ajaha"
 
 # Import environment specific config. This must remain at the bottom
 # of this file so it overrides the configuration defined above.
