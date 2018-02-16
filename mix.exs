@@ -43,6 +43,7 @@ defmodule Eliscore.Mixfile do
       {:gettext, "~> 0.11"},
       {:cowboy, "~> 1.1.2"},
       {:guardian, "~> 1.0"},
+      {:guardian_db, "~> 1.0"},
       {:distillery, "~> 1.5"},
       {:comeonin, "~> 4.0"},
       {:cors_plug, "~> 1.4"},
