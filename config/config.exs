@@ -28,6 +28,11 @@ config :eliscore, Eliscore.Guardian,
   verify_issuer: true,
   secret_key: "ajaha"
 
+config :guardian, Guardian.DB,
+  repo: Eliscore.Repo,
+  schema_name: "guardian_tokens",
+  sweep_interval: 60
+
 # Import environment specific config. This must remain at the bottom
 # of this file so it overrides the configuration defined above.
 import_config "#{Mix.env}.exs"
