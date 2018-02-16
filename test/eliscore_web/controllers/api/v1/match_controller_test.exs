@@ -1,7 +1,7 @@
 defmodule EliscoreWeb.MatchControllerTest do
   use EliscoreWeb.ConnCase, async: true
   import Eliscore.Factory
-  alias Eliscore.{Repo, Model.Category, User, GameMatch}
+  alias Eliscore.{Repo, Model.Category, GameMatch}
 
   test "index/2 responds with all GameMatches" do
     category = Category.changeset(%Category{}, %{name: "fusball"})

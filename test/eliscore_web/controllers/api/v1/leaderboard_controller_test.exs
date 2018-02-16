@@ -1,7 +1,7 @@
 defmodule EliscoreWeb.LeaderboardControllerTest do
   use EliscoreWeb.ConnCase, async: true
   import Eliscore.Factory
-  alias Eliscore.{Repo, User, GameMatch}
+  alias Eliscore.{Repo, GameMatch}
 
   test "index/2 responds with maps based on game matches won" do
     user1 = insert(:user, full_name: "John Wayne")
