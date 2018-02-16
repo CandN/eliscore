@@ -9,19 +9,30 @@ defmodule EliscoreWeb.Router do
     plug :put_secure_browser_headers
   end
 
-  pipeline :api do
+  pipeline :authorized do
     plug :accepts, ["json"]
     plug CORSPlug
-    plug Guardian.Plug.VerifyHeader
-    plug Guardian.Plug.LoadResource
+    plug Eliscore.Guardian.AuthPipeline
+  end
+
+  pipeline :unauthorized do
+    plug Guardian.Plug.Pipeline, otp_app: :eliscore,
+      module: Eliscore.Guardian,
+      error_handler: Eliscore.Guardian.AuthErrorHandler
   end
 
   scope "/api", EliscoreWeb do
-    pipe_through :api
+    pipe_through :unauthorized
 
     scope "/v1" do
       post "/registrations", RegistrationController, :create
+    end
+  end
 
+  scope "/api", EliscoreWeb do
+    pipe_through :authorized
+
+    scope "/v1" do
       post "/sessions", SessionController, :create
       delete "/sessions", SessionController, :delete
 
