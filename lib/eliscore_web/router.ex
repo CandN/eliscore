@@ -33,9 +33,6 @@ defmodule EliscoreWeb.Router do
     pipe_through :authorized
 
     scope "/v1" do
-      post "/sessions", SessionController, :create
-      delete "/sessions", SessionController, :delete
-
       get "/current_user", CurrentUserController, :show
 
       get "/matches", MatchController, :index
