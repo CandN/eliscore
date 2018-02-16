@@ -1,5 +1,6 @@
 import React from 'react'
 import axios from 'axios'
+import { buildHeaders } from '../../utils'
 
 class Leaderboard extends React.Component {
   constructor (props) {
@@ -10,7 +11,7 @@ class Leaderboard extends React.Component {
   }
 
   componentDidMount () {
-    axios.get('/api/v1/leaderboard')
+    axios.get('/api/v1/leaderboard', { headers: buildHeaders() })
       .then(response => {
         let players = response.data.data
         this.setState({ leaderboard: players })
