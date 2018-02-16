@@ -1,6 +1,6 @@
 defmodule EliscoreWeb.MatchView do
   use EliscoreWeb, :view
-  alias EliscoreWeb.{MatchView, UserView, CategoryView}
+  alias EliscoreWeb.{MatchView, UserView}
 
   def render("index.json", %{matches: matches}) do
     %{data: render_many(matches, MatchView, "match.json")}
@@ -11,7 +11,7 @@ defmodule EliscoreWeb.MatchView do
   end
 
   def render("match.json", %{match: match}) do
-    result = %{
+    %{
       id: match.id,
       accepted: match.accepted,
       player1: render(UserView, "user.json", user: match.player1),

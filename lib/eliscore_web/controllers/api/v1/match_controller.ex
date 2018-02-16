@@ -4,7 +4,7 @@ defmodule EliscoreWeb.MatchController do
 
   alias Eliscore.{ GameMatch, Repo }
 
-  def index(conn, params) do
+  def index(conn, _params) do
     matches = GameMatch
               |> GameMatch.newest
               |> preload([:player1, :player2, :category])

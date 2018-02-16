@@ -2,7 +2,6 @@ defmodule EliscoreWeb.CategoryController do
   use EliscoreWeb, :controller
 
   alias Eliscore.Model
-  alias Eliscore.Model.Category
 
   action_fallback EliscoreWeb.FallbackController
 
