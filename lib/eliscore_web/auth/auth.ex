@@ -5,9 +5,10 @@ defmodule Eliscore.Auth do
   def sign_in_user(conn, params) do
     case find_or_create(params) do
       {:ok, user} ->
-        {:ok, jwt, _full_claims} = user |> Guardian.encode_and_sign(:token)
+        {:ok, jwt, _full_claims} = user |> Eliscore.Guardian.encode_and_sign(%{}, token_type: "access")
 
         conn
+        |> Eliscore.Guardian.Plug.sign_in(user)
         |> put_status(:ok)
         |> render(EliscoreWeb.SessionView, "show.json", jwt: jwt, user: user)
 

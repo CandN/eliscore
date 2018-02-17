@@ -1,7 +1,7 @@
 defmodule EliscoreWeb.UserSocket do
   use Phoenix.Socket
 
-  alias Eliscore.{GuardianSerializer}
+  alias Eliscore.{Guardian}
   ## Channels
   channel "users:*", EliscoreWeb.UserChannel
 
@@ -10,9 +10,9 @@ defmodule EliscoreWeb.UserSocket do
   transport :longpoll, Phoenix.Transports.LongPoll
 
   def connect(%{"token" => token}, socket) do
-    case Guardian.decode_and_verify(token) do
+    case Eliscore.Guardian.decode_and_verify(token, %{"typ" => "access"}) do
       {:ok, claims} ->
-        case GuardianSerializer.from_token(claims["sub"]) do
+        case Eliscore.Guardian.resource_from_claims(claims) do
           {:ok, user} ->
             {:ok, assign(socket, :current_user, user)}
           {:error, _reason} ->
