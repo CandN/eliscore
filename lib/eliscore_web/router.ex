@@ -16,6 +16,8 @@ defmodule EliscoreWeb.Router do
   end
 
   pipeline :unauthorized do
+    plug :accepts, ["json"]
+    plug CORSPlug
     plug Guardian.Plug.Pipeline, otp_app: :eliscore,
       module: Eliscore.Guardian,
       error_handler: Eliscore.Guardian.AuthErrorHandler
@@ -26,6 +28,7 @@ defmodule EliscoreWeb.Router do
 
     scope "/v1" do
       post "/registrations", RegistrationController, :create
+      get "/verify_token", TokensController, :verify
     end
   end
 
