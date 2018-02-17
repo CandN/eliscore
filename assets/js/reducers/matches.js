@@ -1,6 +1,12 @@
+import {
+  ADD_MATCH,
+  RECEIVE_MATCHES,
+  RECEIVE_USERS
+} from '../actionTypes';
+
 const match = (state, action) => {
   switch(action.type) {
-    case 'ADD_MATCH':
+    case ADD_MATCH:
       return {
         id: action.id,
         player1: action.player1,
@@ -21,15 +27,15 @@ const initialState = {
 
 const matches = (state = initialState, action) => {
   switch(action.type) {
-    case 'ADD_MATCH':
+    case ADD_MATCH:
       return Object.assign({}, state, {
         matches: [match(undefined, action), ...state.matches]
       });
-    case 'RECEIVE_MATCHES':
+    case RECEIVE_MATCHES:
       return Object.assign({}, state, {
         matches: action.matches,
       });
-    case 'RECEIVE_USERS':
+    case RECEIVE_USERS:
       return Object.assign({}, state, {
         users: action.users,
       });

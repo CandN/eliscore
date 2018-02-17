@@ -2,7 +2,7 @@ defmodule EliscoreWeb.CurrentUserController do
   use EliscoreWeb, :controller
 
   def show(conn, _) do
-    case Guardian.Plug.current_resource(conn) do
+    case Eliscore.Guardian.Plug.current_resource(conn) do
       %Eliscore.User{} = user ->
         conn
         |> put_status(:ok)

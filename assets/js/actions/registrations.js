@@ -1,6 +1,10 @@
 import { push }      from 'react-router-redux';
-import Constants     from '../constants';
 import { httpPost }  from '../utils';
+
+import {
+  CURRENT_USER,
+  REGISTRATIONS_ERROR,
+} from '../actionTypes';
 
 const Actions = {};
 
@@ -11,7 +15,7 @@ Actions.signUp = (data) => {
         localStorage.setItem('phoenixAuthToken', data.jwt);
 
         dispatch({
-          type: Constants.CURRENT_USER,
+          type: CURRENT_USER,
           currentUser: data.user,
         });
 
@@ -21,7 +25,7 @@ Actions.signUp = (data) => {
         error.response.json()
           .then((errorJSON) => {
             dispatch({
-              type: Constants.REGISTRATIONS_ERROR,
+              type: REGISTRATIONS_ERROR,
               errors: errorJSON.error,
             });
           });

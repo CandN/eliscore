@@ -1,0 +1,26 @@
+@mixin sizing($args, $prefix: "") {
+  $width: if(length($args) == 2, nth($args, 1), $args);
+  $height: if(length($args) == 2, nth($args, 2), $args);
+  #{$prefix}width: $width;
+  #{$prefix}height: $height;
+}
+
+@mixin _position($position, $args) {
+  @each $dir in top, left, bottom, right {
+    $i: index($args, $dir);
+    @if $i {
+      #{$dir}: nth($args, $i + 1);
+    }
+  }
+  position: $position;
+}
+
+@mixin absolute($args) {
+  @include _position(absolute, $args);
+}
+@mixin relative($args) {
+  @include _position(relative, $args);
+}
+@mixin fixed($args) {
+  @include _position(fixed, $args);
+}

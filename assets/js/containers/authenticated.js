@@ -45,6 +45,7 @@ class AuthenticatedContainer extends React.Component {
 
     return (
       <div>
+        <div id='notify-wrapper'></div>
         <AddButton text="add new match" onclick={this.handleClick}/>
         { this.state.showForm ? <NewMatchForm dispatch={dispatch} users={users} currentUser={currentUser} categories={categories}/> : null }
         <MatchList matches={matches} categories={categories}/>

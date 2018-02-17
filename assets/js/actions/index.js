@@ -1,9 +1,17 @@
 import axios from 'axios';
 import { normalize, schema } from 'normalizr';
+import { buildHeaders, notify } from '../utils';
+
+import {
+  ADD_MATCH,
+  RECEIVE_CATEGORIES,
+  RECEIVE_MATCHES,
+  RECEIVE_USERS,
+} from '../actionTypes';
 
 export const addMatch = (id, player1, score1, player2, score2, category_id) => {
   return {
-    type: 'ADD_MATCH',
+    type: ADD_MATCH,
     id: id,
     player1: player1,
     player1_score: score1,
@@ -25,40 +33,41 @@ export const postMatch = (player1_id, score1, player2_id, score2, category_id) =
   }
 
   return dispatch => {
-    return axios.post("/api/v1/matches", game_match)
+    return axios.post("/api/v1/matches", game_match, { headers: buildHeaders() })
       .then((response) => {
         var match = response.data.data;
         dispatch(
           addMatch(match.id, match.player1, match.player1_score, match.player2, match.player2_score, match.category_id)
         );
+        notify('Added a match', 'Successfully added a match');
       });
   }
 }
 
 export const receiveMatches = (matches) => {
   return {
-    type: 'RECEIVE_MATCHES',
+    type: RECEIVE_MATCHES,
     matches
   }
 }
 
 export const receiveUsers = (users) => {
   return {
-    type: 'RECEIVE_USERS',
+    type: RECEIVE_USERS,
     users
   }
 }
 
 export const receiveCategories = (categories) => {
   return {
-    type: 'RECEIVE_CATEGORIES',
+    type: RECEIVE_CATEGORIES,
     categories
   }
 }
 
 export const fetchUsers = () => {
   return dispatch => {
-    return axios.get("/api/v1/users")
+    return axios.get("/api/v1/users",  { headers: buildHeaders() })
       .then((response) => {
         dispatch(receiveUsers(response.data.data))
       })
@@ -70,7 +79,7 @@ export const fetchUsers = () => {
 
 export const fetchCategories = () => {
   return dispatch => {
-    return axios.get("/api/v1/categories")
+    return axios.get("/api/v1/categories", { headers: buildHeaders() })
       .then((response) => {
         const category_schema = new schema.Entity('categories');
         const data = normalize(response.data.data, [ category_schema ]);
@@ -85,7 +94,7 @@ export const fetchCategories = () => {
 
 export const fetchMatches = () => {
   return dispatch => {
-    return axios.get("/api/v1/matches")
+    return axios.get("/api/v1/matches", { headers: buildHeaders() })
       .then((response) => {
         dispatch(receiveMatches(response.data.data))
       })

@@ -1,20 +1,25 @@
 defmodule EliscoreWeb.CurrentUserControllerTest do
   use EliscoreWeb.ConnCase, async: true
+  import Eliscore.Factory
 
   describe "show/2" do
     test "responds with current user" do
-      {user, jwt} = sign_in()
+      user = insert(:user, full_name: "John Doe", email: "t@test.pl")
 
-      response = build_conn()
-      |> put_req_header("authorization", jwt)
-      |> get(current_user_path(build_conn(), :show))
-      |> json_response(200)
+      conn = build_conn()
+        |> Eliscore.Guardian.Plug.sign_in(user)
+      jwt = Eliscore.Guardian.Plug.current_token(conn)
+
+      response = conn
+        |> put_req_header("authorization", "bearer:" <> jwt)
+        |> get(current_user_path(build_conn(), :show))
+        |> json_response(200)
 
       expected = %{
         "data" => %{
           "full_name" => "John Doe",
           "id" => user.id,
-          "image_url" => "some/url",
+          "image_url" => "image/url",
           "email" => "t@test.pl"
         }
       }
@@ -22,15 +27,12 @@ defmodule EliscoreWeb.CurrentUserControllerTest do
     end
 
     test "returns nil when provided with wrong jwt" do
-      %Plug.Conn{assigns: %{error: error}} =
-        build_conn()
-        |> put_req_header("authorization", "wrong_jwt")
+      response = build_conn()
+        |> put_req_header("authorization", "bearer:wrong_jwt")
         |> get(current_user_path(build_conn(), :show))
 
-      response = error
-      expected = "Wrong token provided"
-      assert response == expected
+      expected = "unauthenticated"
+      assert response.resp_body == expected
     end
-
   end
 end
