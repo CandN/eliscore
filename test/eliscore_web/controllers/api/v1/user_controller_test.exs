@@ -5,29 +5,25 @@ defmodule EliscoreWeb.UserControllerTest do
 
   test "index/2 responds with all Users" do
     user1 = insert(:user, full_name: "Marco")
-    user2 = insert(:user, full_name: "Polo")
+    insert(:user, full_name: "Polo")
 
     response = build_conn()
                |> Eliscore.Guardian.Plug.sign_in(user1)
                |> get(user_path(build_conn(), :index))
                |> json_response(200)
 
-    expected = %{
+    assert %{
       "data" => [
         %{
-          "full_name" => user1.full_name,
+          "full_name" => "Marco",
           "image_url" => "image/url",
-          "email" => user1.email,
         },
         %{
-          "full_name" => user2.full_name,
+          "full_name" => "Polo",
           "image_url" => "image/url",
-          "email" => user2.email
         }
       ]
-    }
-
-    assert expected = response
+    } = response
   end
 
   describe "show/2" do
