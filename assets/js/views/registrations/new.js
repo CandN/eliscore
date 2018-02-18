@@ -3,6 +3,7 @@ import PropTypes            from 'prop-types';
 import { connect }          from 'react-redux';
 import { Link }             from 'react-router';
 import GoogleLogin          from 'react-google-login';
+import googleLogo from '../../../static/images/g-logo.png'
 
 import { setDocumentTitle } from '../../utils';
 import Actions              from '../../actions/registrations';
@@ -34,13 +35,17 @@ class RegistrationsNew extends React.Component {
 
     return (
       <div className="view-container">
-        <main>
+        <main className="google-button-wrapper">
+          <div className="google-button-logo-wrapper">
+            <img src={googleLogo} className="google-button-logo"/>
+          </div>
           <GoogleLogin
-              clientId="61189001128-f6hlp1hp20aarupukpto32qko966e1n8.apps.googleusercontent.com"
-              buttonText="Login with Google"
-              onSuccess={::this.successResponse}
-              onFailure={::this.failureResponse}
-            />
+            clientId="61189001128-f6hlp1hp20aarupukpto32qko966e1n8.apps.googleusercontent.com"
+            onSuccess={::this.successResponse}
+            onFailure={::this.failureResponse}
+            className="google-button"
+            buttonText="SIGN IN WITH GOOGLE"
+          />
         </main>
       </div>
     );

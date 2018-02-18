@@ -14,3 +14,40 @@
   text-align: center;
   color: #D33E43;
 }
+
+.google-button {
+  width: 180px;
+  height: 40px;
+  font-family: 'Roboto';
+  font-size: 15px;
+  font-weight: bold;
+  padding-top: 2px;
+  background-color: #fff;
+  border: 0;
+  border-top: 1px solid #808080;
+  border-right: 1px solid #808080;
+  border-bottom: 1px solid #808080;
+  border-radius: 0 5px 5px 0;
+  color: #808080;
+
+  &-wrapper {
+    display: flex;
+    justify-content: center;
+  }
+
+  &-logo {
+    height: 20px;
+
+    &-wrapper {
+      display: flex;
+      align-items: center;
+      height: 40px;
+      padding-left: 8px;
+      background-color: #fff;
+      border-radius: 5px 0 0 5px;
+      border-top: 1px solid #808080;
+      border-left: 1px solid #808080;
+      border-bottom: 1px solid #808080;
+    }
+  }
+}
