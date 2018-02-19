@@ -16,19 +16,19 @@
 }
 
 .google-button {
-  width: 180px;
-  height: 40px;
-  font-family: 'Roboto';
-  font-size: 15px;
-  font-weight: bold;
-  padding-top: 2px;
-  background-color: #fff;
-  border: 0;
-  border-top: 1px solid #808080;
-  border-right: 1px solid #808080;
-  border-bottom: 1px solid #808080;
-  border-radius: 0 5px 5px 0;
-  color: #808080;
+  display: flex;
+  align-items: center;
+  height: $google-height;
+  padding-top: $google-padding-top;
+  padding-right: $google-padding-right;
+  padding-left: $google-padding-left;
+  font-family: $google-font-family;
+  font-size: $google-font-size;
+  font-weight: $google-font-weight;
+  background-color: $google-background-color;
+  border: $google-border;
+  border-radius: $google-border-radius;
+  color: $google-color;
 
   &-wrapper {
     display: flex;
@@ -37,17 +37,9 @@
 
   &-logo {
     height: 20px;
+  }
 
-    &-wrapper {
-      display: flex;
-      align-items: center;
-      height: 40px;
-      padding-left: 8px;
-      background-color: #fff;
-      border-radius: 5px 0 0 5px;
-      border-top: 1px solid #808080;
-      border-left: 1px solid #808080;
-      border-bottom: 1px solid #808080;
-    }
+  &-text {
+    display: inline-block;
   }
 }
