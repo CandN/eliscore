@@ -36,16 +36,16 @@ class RegistrationsNew extends React.Component {
     return (
       <div className="view-container">
         <main className="google-button-wrapper">
-          <div className="google-button-logo-wrapper">
-            <img src={googleLogo} className="google-button-logo"/>
-          </div>
           <GoogleLogin
             clientId="61189001128-f6hlp1hp20aarupukpto32qko966e1n8.apps.googleusercontent.com"
             onSuccess={::this.successResponse}
             onFailure={::this.failureResponse}
             className="google-button"
             buttonText="SIGN IN WITH GOOGLE"
-          />
+          >
+            <img src={googleLogo} className="google-button-logo"/>
+            <div class="google-button-text">SIGN IN WITH GOOGLE</div>
+          </GoogleLogin>
         </main>
       </div>
     );
