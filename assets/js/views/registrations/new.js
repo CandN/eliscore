@@ -44,7 +44,7 @@ class RegistrationsNew extends React.Component {
             buttonText="SIGN IN WITH GOOGLE"
           >
             <img src={googleLogo} className="google-button-logo"/>
-            <div class="google-button-text">&nbsp;&nbsp;SIGN IN WITH GOOGLE</div>
+            <div class="google-button-text">SIGN IN WITH GOOGLE</div>
           </GoogleLogin>
         </main>
       </div>
