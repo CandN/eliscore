@@ -104,7 +104,6 @@ export const fetchTournamentDate = () => {
   return dispatch => {
     return axios.get("/api/v1/tournaments/date", { headers: buildHeaders() })
       .then((response) => {
-
         dispatch(receiveTournamentDate(response.data.data));
       })
       .catch((error) => {

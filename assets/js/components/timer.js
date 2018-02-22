@@ -18,7 +18,7 @@ class Timer extends React.Component {
     if (difference > 0) {
       return `${d}d ${h}h ${m}m ${s}s left untill next TOURNAMENT`
     } else {
-      return 'EXPIRED'
+      return 'No tournaments scheduled'
     }
   }
 
@@ -26,11 +26,11 @@ class Timer extends React.Component {
     const date = new Date(this.state.date)
     const startDate = new Date(this.props.startDate)
     const difference = Math.floor(startDate.getTime() - date.getTime())
-    let {days, hours, minutes, seconds} = moment.duration(difference)._data
+    let { days, hours, minutes, seconds } = moment.duration(difference)._data
 
     return(
       <div>
-        {this.showDate(difference, days, hours, minutes, seconds)}
+        { this.showDate(difference, days, hours, minutes, seconds) }
       </div>
     )
   }
