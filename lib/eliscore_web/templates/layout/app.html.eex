@@ -13,8 +13,6 @@
 
   <body>
     <div class="container container-narrow">
-      <%= render EliscoreWeb.SharedView, "_header.html", assigns %>
-
       <div class="form" id="main_container"></div>
 
       <%= render EliscoreWeb.SharedView, "_footer.html", assigns %>

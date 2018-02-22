@@ -20,4 +20,3 @@ import "phoenix_html";
 
 // import socket from "./socket"
 import "./application.js";
-import "./countdown.js";
