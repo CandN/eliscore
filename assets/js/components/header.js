@@ -6,8 +6,7 @@ import Timer from './timer.js'
 
 class Header extends React.Component {
   componentWillMount () {
-    const { dispatch } = this.props
-    dispatch(fetchTournamentDate())
+    this.props.fetchTournamentDate()
   }
 
   render () {
@@ -46,5 +45,8 @@ class Header extends React.Component {
 const mapStateToProps = (state) => {
   return { date: state.tournamentDate }
 }
+const mapDispatchToProps = {
+  fetchTournamentDate
+}
 
-export default connect(mapStateToProps)(Header)
+export default connect(mapStateToProps, mapDispatchToProps)(Header)
