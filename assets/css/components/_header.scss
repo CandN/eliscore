@@ -10,14 +10,21 @@
     display: none;
   }
 
+  .logo {
+    letter-spacing: 5px;
+  }
+
   .menu {
     &__item {
       float: right;
 
       &--left {
         float: left;
-        letter-spacing: 5px;
       }
     }
+  }
+
+  .timer {
+    padding: 10px 15px;
   }
 }

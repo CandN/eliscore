@@ -6,7 +6,11 @@ import MatchList        from '../components/match_list';
 import AddButton        from '../components/add_button';
 import NewMatchForm     from '../components/new_match_form';
 
-import { fetchMatches, fetchCategories, fetchUsers } from '../actions/index'
+import {
+  fetchMatches,
+  fetchCategories,
+  fetchUsers
+} from '../actions/index'
 
 class AuthenticatedContainer extends React.Component {
   constructor(props) {
@@ -40,7 +44,7 @@ class AuthenticatedContainer extends React.Component {
   }
 
   render() {
-    const { matches, categories, dispatch, users, currentUser} = this.props;
+    const { matches, categories, dispatch, users, currentUser } = this.props;
 
     return (
       <div>
