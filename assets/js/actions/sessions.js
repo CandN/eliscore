@@ -21,9 +21,7 @@ export function setCurrentUser(dispatch, user) {
     channel.join().receive('ok', () => {
       dispatch({
         type: CURRENT_USER,
-        currentUser: user,
-        socket: socket,
-        channel: channel,
+        currentUser: user
       });
     });
   }
