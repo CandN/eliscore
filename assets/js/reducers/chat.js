@@ -1,4 +1,6 @@
-import Constants from '../constants';
+import {
+  CHAT_CONNECT_SOCKET_RECEIVE
+} from '../actionTypes';
 
 const initialState = {
   socket: null
@@ -6,7 +8,7 @@ const initialState = {
 
 export default function reducer(state = initialState, action = {}) {
   switch (action.type) {
-  case Constants.CONNECT_SOCKET:
+  case CHAT_CONNECT_SOCKET_RECEIVE:
     return { ...state, socket: action.socket };
   default:
     return state;

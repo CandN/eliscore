@@ -5,6 +5,7 @@ import registration from './registration';
 import categories from './categories';
 import matches from './matches';
 import users from './users';
+import chat from './chat';
 import { routerReducer } from 'react-router-redux';
 
 export default combineReducers({
@@ -13,5 +14,6 @@ export default combineReducers({
   registration,
   matches,
   users,
-  categories
+  categories,
+  chat
 });
