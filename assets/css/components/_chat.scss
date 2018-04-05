@@ -1,53 +1,155 @@
 .chat {
   &-wrapper {
-    height: 50px;
-    width: 300px;
-    background-color: red;
-    text-align: center;
+    width: 250px;
+    align-self: flex-end;
+
+    &--opened {
+      min-height: 150px;
+      background-color: #215E61;
+    }
+
+    &__header {
+      background-color: #5E8F91;
+      font-size: 17px;
+      letter-spacing: 2px;
+      text-align: center;
+      color: #fff;
+      box-shadow: 0px 1px 1px 0px rgba(0,0,0,0.75);
+    }
+  }
+
+  &-userlist {
+    list-style-type: none;
+    padding-left: 5px;
+  }
+
+  &-user {
+    margin: 5px 0;
+    font-size: 15px;
+    color: #fff;
+    cursor: pointer;
+  }
+
+  &-room {
+    position: relative;
+    background-color: #0e4749;
+    width: 250px;
+    margin-left: 15px;
+    z-index: 100;
+    align-self: flex-end;
 
     &--opened {
       height: 400px;
     }
   }
 
-  &-userlist {
-    list-style-type: none;
-  }
-
-  &-user {
-    margin: 5px 0;
-    font-size: 13px;
-    background: green;
-  }
-
-  &-room {
-    background-color: blue;
-    width: 200px;
-    height: 300px;
-    margin-left: 15px;
-  }
-
   &-messages {
-    height: 254px;
+    height: 356px;
+    padding-bottom: 10px;
     overflow: scroll;
   }
 
   &-input {
     width: 100%;
+    height: 25px;
+    color: #000;
   }
-}
 
-.divider {
-  display: inline-block;
-  width: 100%;
-  border-bottom: 1px solid black;
+  &-leave {
+    position: absolute;
+    right: 15px;
+    top: 0px;
+    z-index: 9999;
+    cursor: pointer;
+  }
+
+  &-header {
+    display: inline-block;
+    width: 100%;
+    height: 25px;
+    padding-top: 2px;
+    background-color: #5E8F91;
+    font-size: 17px;
+    letter-spacing: 2px;
+    text-align: center;
+    color: #fff;
+    box-shadow: 0px 1px 1px 0px rgba(0,0,0,0.75);
+  }
+
+  &-message {
+    padding: 2px 5px;
+
+    &__author {
+      font-weight: bold;
+    }
+
+    &__body {
+    }
+  }
 }
 
 .chatrooms {
   display: flex;
-  height: 300px;
-  width: 100%;
   position: fixed;
   bottom: 0;
   left: 0;
+  z-index: 1000;
+}
+
+.eliscore-chat {
+  &__join-btn {
+    border: none;
+    background-color: #4caf50;
+    color: #fff;
+    padding: 15px 30px;
+    font-size: 17px;
+    text-align: center;
+  }
+
+  .user-list {
+    list-style-type: none;
+
+    &__user {
+      position: relative;
+
+      &::before {
+        position: absolute;
+        top: 6px;
+        left: -14px;
+        width: 10px;
+        height: 10px;
+        border-radius: 50%;
+        content: '';
+        background-color: #cfd2da;
+      }
+
+      &--active {
+        &::before {
+          position: absolute;
+          top: 6px;
+          left: -14px;
+          width: 10px;
+          height: 10px;
+          border-radius: 50%;
+          content: '';
+          background-color: lighten(#4caf50, 10);
+        }
+      }
+    }
+  }
+
+  .chatroom {
+    &__message {
+      padding: 2px 5px;
+
+      &-author {
+        display: inline-block;
+        font-weight: bold;
+      }
+
+      &-body {
+        display: inline-block;
+      }
+    }
+  }
 }
