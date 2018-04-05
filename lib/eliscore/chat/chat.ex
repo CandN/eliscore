@@ -1,4 +1,4 @@
-defmodule Eliscore.Chat do
+defmodule Eliscore.Chat.Chat do
   @moduledoc """
   The Chat context.
   """
