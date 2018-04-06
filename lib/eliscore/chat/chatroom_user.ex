@@ -14,7 +14,7 @@ defmodule Eliscore.Chat.ChatroomUser do
   @doc false
   def changeset(%ChatroomUser{} = chatroom_user, attrs) do
     chatroom_user
-    |> cast(attrs, [])
-    |> validate_required([])
+    |> cast(attrs, [:user_id, :chatroom_id])
+    |> validate_required([:user_id, :chatroom_id])
   end
 end

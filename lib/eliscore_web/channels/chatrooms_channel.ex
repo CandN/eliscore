@@ -14,10 +14,10 @@ defmodule EliscoreWeb.ChatroomsChannel do
   end
 
   def handle_in("chatrooms:open", payload, socket) do
-    members = "name"#payload["body"]
+    members = Enum.sort(payload["body"])
     case Chat.find_chatroom(members) do
       nil ->
-        chatroom = Chat.create_chatroom(%{name: members})
+        chatroom = Chat.create_chatroom(%{members: members})
         {:reply, {:ok, %{id: chatroom.id }}, socket }
       chatroom ->
         {:reply, {:ok, %{id: chatroom.id }}, socket }
