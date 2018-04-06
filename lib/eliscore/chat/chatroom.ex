@@ -19,7 +19,7 @@ defmodule Eliscore.Chat.Chatroom do
   @doc false
   def changeset(%Chatroom{} = chatroom, attrs) do
     chatroom
-    |> cast(attrs, [:name])
+    |> cast(attrs, [:name, :members])
     |> validate_required([])
   end
 end

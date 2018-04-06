@@ -83,7 +83,8 @@ defmodule Eliscore.Chat.Chat do
       {:error, %Ecto.Changeset{}}
 
   """
-  def create_chatroom(attrs \\ %{}, members \\ []) do
+  def create_chatroom(attrs \\ %{}) do
+    %{ members: members } = attrs
     {:ok, chatroom} =
       %Chatroom{}
         |> Chatroom.changeset(attrs)
