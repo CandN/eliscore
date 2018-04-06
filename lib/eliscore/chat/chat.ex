@@ -6,7 +6,7 @@ defmodule Eliscore.Chat.Chat do
   import Ecto.Query, warn: false
   alias Eliscore.Repo
 
-  alias Eliscore.Chat.{Message, Chatroom}
+  alias Eliscore.Chat.{Message, Chatroom, ChatroomUser}
 
   @doc """
   Gets 10 last chatroom messages based on chatroom_id.
@@ -43,7 +43,16 @@ defmodule Eliscore.Chat.Chat do
   Gets a single chatroom based on members array.
   """
   def find_chatroom(members) do
-    Repo.get_by(Chatroom, name: members)
+    Repo.get_by(Chatroom, members: members)
+  end
+
+  @doc """
+  Joins chatroom based on chatroom id and user id
+  """
+  def join_chatroom(user_id, chatroom_id) do
+    %ChatroomUser{}
+    |> ChatroomUser.changeset(%{user_id: user_id, chatroom_id: chatroom_id})
+    |> Repo.insert()
   end
 
   @doc """
@@ -74,9 +83,13 @@ defmodule Eliscore.Chat.Chat do
       {:error, %Ecto.Changeset{}}
 
   """
-  def create_chatroom(attrs \\ %{}) do
-    %Chatroom{}
-    |> Chatroom.changeset(attrs)
-    |> Repo.insert()
+  def create_chatroom(attrs \\ %{}, members \\ []) do
+    {:ok, chatroom} =
+      %Chatroom{}
+        |> Chatroom.changeset(attrs)
+        |> Repo.insert()
+
+    Enum.each(members, fn(user_id) -> join_chatroom(user_id, chatroom.id) end)
+    chatroom
   end
 end
