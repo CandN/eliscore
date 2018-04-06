@@ -43,7 +43,7 @@ defmodule Eliscore.Chat.Chat do
   Gets a single chatroom based on members array.
   """
   def find_chatroom(members) do
-    Repo.get_by(Chatroom, members: members)
+    Repo.get_by(Chatroom, name: members)
   end
 
   @doc """

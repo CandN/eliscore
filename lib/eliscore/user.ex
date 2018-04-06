@@ -2,6 +2,7 @@ defmodule Eliscore.User do
   use Ecto.Schema
   import Ecto.Changeset
   alias Eliscore.{Repo, User}
+  alias Eliscore.Chat.{ChatroomUser, Chatroom}
 
   @derive {Poison.Encoder, only: [:id, :email, :full_name, :image_url]}
   schema "users" do
@@ -15,6 +16,9 @@ defmodule Eliscore.User do
     field :first_name, :string
     field :last_name, :string
     field :uuid, :string
+
+    has_many :chatroom_users, ChatroomUser
+    has_many :chatrooms, through: [:chatroom_users, :chatroom]
 
     timestamps()
   end
