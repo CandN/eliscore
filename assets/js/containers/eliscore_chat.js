@@ -1,34 +1,47 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import { Socket, Presence } from 'phoenix'
+import { Presence } from 'phoenix'
 import { connect } from 'react-redux'
 import axios from 'axios'
+import ChatConnect from '../components/chat/connect_chat'
+import Chatroom from '../components/chat/chatroom'
+import UserList from '../components/chat/users_list'
+
+import { connectSocket } from '../actions/index';
 
 class EliscoreChat extends React.Component {
   constructor(props) {
     super(props)
 
     this.channel = null
+    this.userChannel = null
     this.state = {
+      joined: false,
       opened: false,
       presences: {},
-      chatrooms: {},
+      chatrooms: [],
       messages: {},
     }
+  }
+
+  componentDidMount() {
+    const { dispatch } = this.props
+    let socket_url = "/socket";
+    dispatch(connectSocket(socket_url));
   }
 
   renderOnlineUsers() {
     let array = []
     Presence.list(this.state.presences, (id, {metas: [first, ...rest]}) => {
-      array.push(id)
+      array.push({ id: first.id, full_name: first.full_name })
     });
     return array;
   }
 
   openChat() {
-    const { socket } = this.props;
+    const { currentUser, socket } = this.props;
     if(this.channel === null) {
-      this.channel = socket.channel('chat')
+      this.channel = socket.channel('chatrooms:lobby')
       this.channel.on("presence_state", state => {
           let presences = Presence.syncState(this.state.presences, state)
           this.setState({ presences: presences })
@@ -44,112 +57,128 @@ class EliscoreChat extends React.Component {
         .receive("ok", resp => { console.log("Joined successfully", resp) })
         .receive("error", resp => { console.log("Unable to join", resp) })
     }
-    this.setState({opened: !this.state.opened})
-  }
-
-  newMessage({ body, author, timestamp }) {
-    return (
-      <div key={timestamp} className="chat-message">
-        <span className="message-author">{author}: </span>
-        <span className="message-body">{body}</span>
-      </div>
-    )
-  }
-
-  handleKeyPress(event, user) {
-    let channel = this.state.chatrooms[user]
-    if(event.key == 'Enter') {
-      channel.push("new_message", { body: event.target.value})
-      event.target.value = ''
+    if(this.userChannel === null) {
+      this.userChannel = socket.channel(`users:${currentUser.id}`)
+      this.userChannel.on("open_room", payload => {
+        //this.joinSingleChatroom(payload.user_id, payload.chatroom_id)
+        let rooms = this.state.chatrooms
+        rooms.push({ id: payload.chatroom_id, user_id: payload.user_id, name: this.findUser(payload.user_id) })
+        this.setState({chatrooms: rooms})
+      })
+      this.userChannel.join()
+        .receive("ok", resp => { console.log("Joined successfully", resp) })
+        .receive("error", resp => { console.log("Unable to join", resp) })
     }
+    this.setState({opened: !this.state.opened, joined: true})
   }
 
-  renderSingleChatroom(user) {
-    return (
-      <div
-        className="chat-room"
-        key={user}>
-        <div className="divider">Talking with: {user}</div>
-        <div
-          className="chat-messages"
-          id={user}
-          >
-          { this.state.messages[user].map(message =>
-            this.newMessage(message)
-          )}
-        </div>
-        <input type="text" className="chat-input" onKeyPress={(event) => this.handleKeyPress(event, user)}/>
-      </div>
-    )
+
+  leaveChatroom(chatroom_id, channel) {
+    channel.leave()
+    let chatrooms = this.state.chatrooms;
+    let room = chatrooms.find((c) => c.id == chatroom_id)
+    let index = chatrooms.indexOf(room)
+    delete chatrooms[index]
+    this.setState({chatrooms: chatrooms})
   }
 
   renderRooms() {
-    let rooms = Object.keys(this.state.chatrooms).map(room =>
-      this.renderSingleChatroom(room)
+    const { socket } = this.props
+
+    return this.state.chatrooms.map(room =>
+      <Chatroom
+        key={room.user_id}
+        socket={socket}
+        name={room.name}
+        messages={this.state.messages[room.user_id] || []}
+        id={room.id}
+        findUser={this.findUser.bind(this)}
+        onLeave={this.leaveChatroom.bind(this)} />
     )
-    return rooms
   }
 
-  openChatroom(user) {
-    if(Object.keys(this.state.chatrooms).includes(user)) {
+  newMessage({ timestamp, body, author_id }) {
+    const author = this.findUser(author_id);
+
+    return {
+      timestamp: timestamp,
+      body: body,
+      author: author
+    }
+  }
+
+  openChatroom(user_id) {
+    const { currentUser, socket } = this.props
+
+    if(currentUser.id == user_id) {
       return;
     }
-    console.log(user);
 
-    axios.get("/api/v1/channel")
-      .then((response) => {
-        const { currentUser, socket } = this.props;
-        let rooms = this.state.chatrooms;
-        let channel = socket.channel(`rooms:${response.data.data.id}`)
-        channel.on("new_message", body => {
-          let messages = this.state.messages
-          messages[user].push(body)
-          this.setState({ messages: messages })
-        })
-        channel.join()
-          .receive("ok", resp => { console.log("Joined successfully", resp) })
-          .receive("error", resp => { console.log("Unable to join", resp) })
-        rooms[user] = channel
-        let messages = this.state.messages
-        messages[user] = []
-        this.setState({chatrooms: rooms, messages: messages})
-      })
-
+    let users = [currentUser.id, user_id]
+    let openedChatroomsIds = this.state.chatrooms.map((e) => e.id )
+    this.channel.push("chatrooms:open", { body: users })
+    .receive("ok", (reply) => {
+      if(openedChatroomsIds.includes(reply.id)) {
+        return;
+      }
+      let rooms = this.state.chatrooms
+      rooms.push({ id: reply.id, user_id: user_id, name: this.findUser(user_id) })
+      this.setState({chatrooms: rooms})
+    })
     return;
   }
 
+  findUser(user_id) {
+    const { users } = this.props
+    let user = users.find(user => {
+      return user.id == user_id
+    })
+    return user.full_name;
+  }
+
   renderUserList() {
-    let users = this.renderOnlineUsers()
+    let onlineUsers= this.renderOnlineUsers();
+    const { users } = this.props
+    debugger
 
     return (
       <ul className="chat-userlist">
+        <h4>Currently online:</h4>
         { users.map(user =>
           <li
             className="chat-user"
-            onClick={() => this.openChatroom(user)}
-            key={user}>
-            {user}
+            onClick={() => this.openChatroom(user.id)}
+            key={user.id}>
+            {user.full_name}
           </li>
         )}
       </ul>
     )
   }
 
+  toggleChat() {
+    this.setState({ opened: !this.state.opened })
+  }
+
   renderChat() {
     let classname = this.state.opened ? 'chat-wrapper chat-wrapper--opened' : 'chat-wrapper'
+    let onlineUsers = this.renderOnlineUsers();
+    const { users } = this.props
 
     return (
       <div className={classname}>
-        <div>Click to open chat</div>
-        { this.state.opened && this.renderUserList() }
-        <input type="submit" onClick={this.openChat.bind(this)} value="Join chat!"/>
+        { this.state.joined && <div
+          className="chat-wrapper__header"
+          onClick={this.toggleChat.bind(this)}>EliscoreChat</div> }
+        { this.state.opened && <UserList users={users} onClick={this.openChatroom.bind(this)} onlineUsers={onlineUsers} /> }
+        { !this.state.joined && <ChatConnect onClick={this.openChat.bind(this)} value="Connect to chat!" /> }
       </div>
     )
   }
 
   render() {
     return (
-      <div className="chatrooms">
+      <div className="eliscore-chat chatrooms">
         {this.renderChat()}
         {this.renderRooms()}
       </div>
@@ -159,7 +188,8 @@ class EliscoreChat extends React.Component {
 
 const mapStateToProps = (state, ownProps) => {
   return {
-    socket: state.session.socket,
+    users: state.matches.users,
+    socket: state.chat.socket,
     currentUser: state.session.currentUser
   }
 }
