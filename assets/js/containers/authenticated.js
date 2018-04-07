@@ -7,7 +7,11 @@ import AddButton        from '../components/add_button';
 import NewMatchForm     from '../components/new_match_form';
 import EliscoreChat     from './eliscore_chat';
 
-import { fetchMatches, fetchCategories, fetchUsers } from '../actions/index'
+import {
+  fetchMatches,
+  fetchCategories,
+  fetchUsers
+} from '../actions/index'
 
 class AuthenticatedContainer extends React.Component {
   constructor(props) {

@@ -1,14 +1,30 @@
 .header {
   border-bottom: 1px solid $tertiary-color;
 
+  .timer-countdown {
+    padding-top: 10px;
+    padding-left: 10px;
+  }
+
+  .tournament-date {
+    display: none;
+  }
+
+  .logo {
+    letter-spacing: 5px;
+  }
+
   .menu {
     &__item {
       float: right;
 
       &--left {
-        letter-spacing: 5px;
         float: left;
       }
     }
+  }
+
+  .timer {
+    padding: 10px 15px;
   }
 }

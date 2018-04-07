@@ -14,3 +14,33 @@
   text-align: center;
   color: #D33E43;
 }
+
+.google-button {
+  display: flex;
+  align-items: center;
+  height: $google-height;
+  padding-top: $google-padding-top;
+  padding-right: $google-padding-right;
+  padding-left: $google-padding-left;
+  font-family: $google-font-family;
+  font-size: $google-font-size;
+  font-weight: $google-font-weight;
+  background-color: $google-background-color;
+  border: $google-border;
+  border-radius: $google-border-radius;
+  color: $google-color;
+
+  &-wrapper {
+    display: flex;
+    justify-content: center;
+  }
+
+  &-logo {
+    height: 20px;
+    padding-right: 7px;
+  }
+
+  &-text {
+    display: inline-block;
+  }
+}

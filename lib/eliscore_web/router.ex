@@ -47,6 +47,10 @@ defmodule EliscoreWeb.Router do
       get "/channel", ChannelsController, :index
       resources "/users", UserController, only: [:index, :show]
       resources "/categories", CategoryController, only: [:index]
+
+      scope "/tournaments" do
+        get "/date", TournamentController, :date
+      end
     end
   end
 

@@ -8,6 +8,7 @@ import {
   CHAT_CONNECT_SOCKET,
   CHAT_CONNECT_SOCKET_RECEIVE,
   RECEIVE_CATEGORIES,
+  RECEIVE_TOURNAMENT_DATE,
   RECEIVE_MATCHES,
   RECEIVE_USERS,
 } from '../actionTypes';
@@ -79,6 +80,13 @@ export const receiveUsers = (users) => {
   }
 }
 
+export const receiveTournamentDate = (date) => {
+  return {
+    type: RECEIVE_TOURNAMENT_DATE,
+    date
+  }
+}
+
 export const receiveCategories = (categories) => {
   return {
     type: RECEIVE_CATEGORIES,
@@ -106,6 +114,18 @@ export const fetchCategories = () => {
         const data = normalize(response.data.data, [ category_schema ]);
 
         dispatch(receiveCategories(data.entities.categories));
+      })
+      .catch((error) => {
+        console.log(error);
+      })
+  }
+}
+
+export const fetchTournamentDate = () => {
+  return dispatch => {
+    return axios.get("/api/v1/tournaments/date", { headers: buildHeaders() })
+      .then((response) => {
+        dispatch(receiveTournamentDate(response.data.data));
       })
       .catch((error) => {
         console.log(error);
