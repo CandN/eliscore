@@ -38,14 +38,18 @@ defmodule EliscoreWeb.ChatroomsChannel do
                 author_id: message.author_id,
                 timestamp: message.inserted_at
                })
-             #chatroom = Chat.get_chatroom!(chatroom_id)
-    #members = chatroom.members -- [current_user.id]
-    #Enum.map(members, fn member_id ->
-      #  EliscoreChatWeb.Endpoint.broadcast("users:#{member_id}", "open_room", %{
-                                            #                                   chatroom_id: chatroom_id,
-                                            # user_id: current_user.id
-                                            #})
-                                        #end)
+    chatroom = Chat.get_chatroom!(chatroom_id)
+    members = chatroom.members -- [current_user.id]
+    Enum.map(members, fn member_id ->
+      EliscoreWeb.Endpoint.broadcast(
+        "users:#{member_id}",
+        "open_room",
+        %{
+          chatroom_id: chatroom_id,
+          user_id: current_user.id
+        }
+      )
+    end)
     {:noreply, socket}
   end
 
