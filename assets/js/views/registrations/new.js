@@ -3,7 +3,7 @@ import PropTypes            from 'prop-types';
 import { connect }          from 'react-redux';
 import { Link }             from 'react-router';
 import GoogleLogin          from 'react-google-login';
-import googleLogo from '../../../static/images/g-logo.png'
+//import googleLogo from '../../../static/images/g-logo.png'
 
 import { setDocumentTitle } from '../../utils';
 import Actions              from '../../actions/registrations';
@@ -43,7 +43,6 @@ class RegistrationsNew extends React.Component {
             className="google-button"
             buttonText="SIGN IN WITH GOOGLE"
           >
-            <img src={googleLogo} className="google-button-logo"/>
             <div class="google-button-text">SIGN IN WITH GOOGLE</div>
           </GoogleLogin>
         </main>

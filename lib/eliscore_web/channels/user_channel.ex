@@ -1,5 +1,6 @@
 defmodule EliscoreWeb.UserChannel do
   use EliscoreWeb, :channel
+  alias EliscoreWeb.Presence
 
   def join("users:" <> user_id, _params, socket) do
     current_user = socket.assigns.current_user

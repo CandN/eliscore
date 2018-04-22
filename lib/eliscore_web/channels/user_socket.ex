@@ -4,6 +4,8 @@ defmodule EliscoreWeb.UserSocket do
   alias Eliscore.{Guardian}
   ## Channels
   channel "users:*", EliscoreWeb.UserChannel
+  channel "chatrooms:*", EliscoreWeb.ChatroomsChannel
+  channel "rooms:*", EliscoreWeb.UserChannel
 
   ## Transports
   transport :websocket, Phoenix.Transports.WebSocket
