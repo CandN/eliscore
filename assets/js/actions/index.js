@@ -1,14 +1,35 @@
 import axios from 'axios';
 import { normalize, schema } from 'normalizr';
 import { buildHeaders, notify } from '../utils';
+import { Socket } from 'phoenix';
 
 import {
   ADD_MATCH,
+  CHAT_CONNECT_SOCKET,
+  CHAT_CONNECT_SOCKET_RECEIVE,
   RECEIVE_CATEGORIES,
   RECEIVE_TOURNAMENT_DATE,
   RECEIVE_MATCHES,
   RECEIVE_USERS,
 } from '../actionTypes';
+
+export const connectSocket = (socket_url) => {
+  const socket = new Socket(socket_url, {
+    params: { token: localStorage.getItem('phoenixAuthToken') }
+  });
+
+  socket.connect();
+  return dispatch => {
+    dispatch(receiveSocket(socket))
+  }
+}
+
+export const receiveSocket = (socket) => {
+  return {
+    type: CHAT_CONNECT_SOCKET_RECEIVE,
+    socket: socket
+  }
+}
 
 export const addMatch = (id, player1, score1, player2, score2, category_id) => {
   return {

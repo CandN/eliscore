@@ -6,6 +6,7 @@ import categories from './categories';
 import tournamentDate from './tournament_date';
 import matches from './matches';
 import users from './users';
+import chat from './chat';
 import { routerReducer } from 'react-router-redux';
 
 export default combineReducers({
@@ -15,5 +16,6 @@ export default combineReducers({
   matches,
   users,
   categories,
-  tournamentDate
+  tournamentDate,
+  chat
 });
