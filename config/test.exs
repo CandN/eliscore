@@ -17,3 +17,6 @@ config :eliscore, Eliscore.Repo,
   database: "eliscore_test",
   hostname: "localhost",
   pool: Ecto.Adapters.SQL.Sandbox
+
+config :maru, EliscoreWeb.APIs.Core,
+  test: true
