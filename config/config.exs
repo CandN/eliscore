@@ -33,7 +33,7 @@ config :guardian, Guardian.DB,
   schema_name: "guardian_tokens",
   sweep_interval: 60
 
-config :maru, EliscoreWeb.APIs.Core,
+config :maru, EliscoreWeb.API.Core,
   versioning: [using: :path],
   http: [port: 4001]
 
