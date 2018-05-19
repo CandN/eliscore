@@ -1,6 +1,7 @@
 defmodule Eliscore.Auth do
   use EliscoreWeb, :controller
   alias Eliscore.{Repo, User}
+  require IEx
 
   def sign_in_user(conn, params) do
     case find_or_create(params) do
@@ -21,10 +22,10 @@ defmodule Eliscore.Auth do
   end
 
   defp find_or_create(params) do
-    insert_params = Map.new(params, fn {k, v} -> {String.to_atom(k), v} end)
     case Repo.get_by(User, params_map(params)) do
       nil ->
-        User.changeset(%User{}, insert_params)
+        %User{}
+        |> User.changeset(params)
         |> Repo.insert
       user ->
         update_user_image(user, params["image_url"])

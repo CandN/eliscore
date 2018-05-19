@@ -4,6 +4,7 @@ defmodule Eliscore.Tournament do
   alias Eliscore.Tournament
 
 
+  @derive {Jason.Encoder, only: [:id, :start_date]}
   schema "tournaments" do
     field :start_date, :utc_datetime
 

@@ -1,9 +1,9 @@
 defmodule Eliscore.User do
   use Ecto.Schema
   import Ecto.Changeset
-  alias Eliscore.{Repo, User}
+  alias Eliscore.User
 
-  @derive {Poison.Encoder, only: [:id, :email, :full_name, :image_url]}
+  @derive {Jason.Encoder, only: [:id, :email, :full_name, :image_url]}
   schema "users" do
     field :admin, :boolean, default: false
     field :email, :string
@@ -22,7 +22,7 @@ defmodule Eliscore.User do
   @required_fields ~w(email uuid full_name image_url first_name last_name)
   @optional_fields ~w(encrypted_password admin)
 
-  @doc false
+  @spec changeset(%User{}, map()) :: Ecto.Changeset.t()
   def changeset(%User{} = user, attrs) do
     user
     |> cast(attrs, @required_fields, @optional_fields)

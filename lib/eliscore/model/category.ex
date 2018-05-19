@@ -4,6 +4,7 @@ defmodule Eliscore.Model.Category do
   alias Eliscore.Model.Category
 
 
+  @derive {Jason.Encoder, only: [:id, :name]}
   schema "categories" do
     field :name, :string
 
