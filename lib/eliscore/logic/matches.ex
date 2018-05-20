@@ -1,8 +1,10 @@
-defmodule Eliscore.Logic.Matches.Save do
+defmodule Eliscore.Logic.Matches do
   alias Eliscore.{GameMatch, Repo}
+  import Ecto.Query, only: [preload: 2]
 
   @moduledoc """
-  Module responsible for saving a match result
+  This module is responsible for handling all match
+  related logic actions
   """
 
   @type input :: %{
@@ -13,15 +15,22 @@ defmodule Eliscore.Logic.Matches.Save do
     category_id: pos_integer(),
   }
 
-  @spec call(params :: input) ::
-    {:ok, %GameMatch{}}
-    | {:error, :match_params_invalid}
+  @spec save(params :: input) ::
+  {:ok, %GameMatch{}}
+  | {:error, :match_params_invalid}
 
-  def call(params) do
+  def save(params) do
     changeset = GameMatch.changeset(%GameMatch{}, params)
     case Repo.insert(changeset) do
       {:ok, match} -> {:ok, Repo.preload(match, [:player1, :player2, :category])}
       _error       -> {:error, :match_params_invalid}
     end
+  end
+
+  @spec fetch_all() :: list(GameMatch)
+  def fetch_all() do
+    GameMatch.newest()
+    |> preload([:player1, :player2])
+    |> Repo.all
   end
 end

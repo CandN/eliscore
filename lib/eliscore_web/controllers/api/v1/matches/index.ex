@@ -9,7 +9,7 @@ defmodule EliscoreWeb.API.V1.Matches.Index do
 
   desc "Fetch matches sorted by date"
   get do
-    matches = Matches.FetchAll.call()
+    matches = Matches.fetch_all()
 
     json(conn, %{data: matches})
   end

@@ -9,7 +9,7 @@ defmodule EliscoreWeb.API.V1.Leaderboard.Index do
 
   desc "Fetch leaderboard statistics"
   get do
-    leaderboard = Leaderboard.Calculate.call()
+    leaderboard = Leaderboard.calculate()
 
     json(conn, %{data: leaderboard})
   end

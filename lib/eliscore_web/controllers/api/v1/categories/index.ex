@@ -7,7 +7,7 @@ defmodule EliscoreWeb.API.V1.Categories.Index do
 
   desc "Fetches all categories"
   get do
-    categories = Eliscore.Logic.Categories.FetchAll.call()
+    categories = Eliscore.Logic.Categories.fetch_all()
 
     json(conn, %{data: categories})
   end

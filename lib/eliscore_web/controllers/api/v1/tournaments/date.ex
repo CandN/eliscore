@@ -8,7 +8,7 @@ defmodule EliscoreWeb.API.V1.Tournaments.Date do
 
   namespace :date do
     get do
-      tournament = Tournaments.FetchDate.call()
+      tournament = Tournaments.fetch_date()
       json(conn, %{data: tournament})
     end
   end

@@ -15,7 +15,7 @@ defmodule EliscoreWeb.API.V1.Matches.Create do
   end
 
   post do
-    with {:ok, match} <- Eliscore.Logic.Matches.Save.call(params) do
+    with {:ok, match} <- Eliscore.Logic.Matches.save(params) do
       json(conn, %{data: match})
     else
       {:error, reason} -> json(conn, %{error: reason})

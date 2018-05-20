@@ -7,7 +7,7 @@ defmodule EliscoreWeb.API.V1.Users.Index do
 
   desc "Fetches all users"
   get do
-    users = Eliscore.Logic.Users.FetchAll.call()
+    users = Eliscore.Logic.Users.fetch_all()
 
     json(conn, %{data: users})
   end

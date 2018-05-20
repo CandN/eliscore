@@ -1,13 +1,14 @@
-defmodule Eliscore.Logic.Leaderboard.Calculate do
+defmodule Eliscore.Logic.Leaderboard do
   import Ecto.Query, only: [from: 2]
   alias Eliscore.{User, Repo}
 
   @moduledoc """
-  This module is responsible for calculating leaderboards table
+  This module is responsible for handling all leaderboard
+  related logic actions
   """
 
-  @spec call() :: list(map())
-  def call() do
+  @spec calculate() :: list(map())
+  def calculate() do
     leaderboard_query()
     |> Repo.all()
     |> Enum.map(&add_points_to_player/1)

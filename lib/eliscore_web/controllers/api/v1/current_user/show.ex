@@ -9,7 +9,7 @@ defmodule EliscoreWeb.API.V1.CurrentUser.Show do
 
   desc "Fetches current user"
   get do
-    with %User{} = user <- CurrentUser.Fetch.call(conn) do
+    with %User{} = user <- CurrentUser.fetch(conn) do
       json(conn, %{data: user})
     else
       _error -> json(conn, %{error: "Wrong token provided"})
