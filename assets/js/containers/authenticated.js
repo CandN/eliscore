@@ -3,6 +3,7 @@ import { connect }      from 'react-redux';
 import { routeActions } from 'react-router-redux';
 import Actions          from '../actions/sessions';
 import MatchList        from '../components/match_list';
+import Logout           from '../components/logout';
 import AddButton        from '../components/add_button';
 import NewMatchForm     from '../components/new_match_form';
 import EliscoreChat     from './eliscore_chat';
@@ -50,6 +51,7 @@ class AuthenticatedContainer extends React.Component {
     return (
       <div>
         <div id='notify-wrapper'></div>
+        <Logout text="Logout"/>
         <AddButton text="add new match" onclick={this.handleClick}/>
         { this.state.showForm ? <NewMatchForm dispatch={dispatch} users={users} currentUser={currentUser} categories={categories}/> : null }
         <MatchList matches={matches} categories={categories}/>
