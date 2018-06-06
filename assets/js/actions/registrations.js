@@ -10,13 +10,13 @@ const Actions = {};
 
 Actions.signUp = (data) => {
   return dispatch => {
-    httpPost('/api/v1/registrations', {user: data})
-      .then((data) => {
-        localStorage.setItem('phoenixAuthToken', data.jwt);
+    httpPost('/api/v1/registrations', data)
+      .then((response) => {
+        localStorage.setItem('phoenixAuthToken', response.jwt);
 
         dispatch({
           type: CURRENT_USER,
-          currentUser: data.user,
+          currentUser: response.user,
         });
 
         dispatch(push('/'));

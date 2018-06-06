@@ -7,7 +7,6 @@ defmodule EliscoreWeb.API.V1.Base do
     CurrentUser,
     Leaderboard,
     Categories,
-    Registrations,
     Tournaments
   }
 
@@ -22,6 +21,5 @@ defmodule EliscoreWeb.API.V1.Base do
   mount CurrentUser.Base
   mount Leaderboard.Base
   mount Categories.Base
-  mount Registrations.Base
   mount Tournaments.Base
 end

@@ -7,8 +7,8 @@ defmodule EliscoreWeb.API.V1.Registrations.Create do
   """
 
   params do
-    requires :uuid
-    requires :email
+    requires :uuid, type: String
+    requires :email, type: String
     optional :password, type: String
     optional :login, type: String
     optional :full_name, type: String

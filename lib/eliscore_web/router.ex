@@ -27,7 +27,7 @@ defmodule EliscoreWeb.Router do
     pipe_through :unauthorized
 
     scope "/v1" do
-      post "/registrations", RegistrationController, :create
+      forward "/registrations", API.V1.Registrations.Base
       get "/verify_token", TokensController, :verify
     end
   end

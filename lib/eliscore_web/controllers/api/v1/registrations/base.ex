@@ -1,12 +1,10 @@
 defmodule EliscoreWeb.API.V1.Registrations.Base do
-  use Maru.Router
+  use Maru.Router, make_plug: true
   alias EliscoreWeb.API.V1.Registrations
 
   @moduledoc """
   This module is responsible for mounting all registrations actions
   """
 
-  namespace :registrations do
-    mount Registrations.Create
-  end
+  mount Registrations.Create
 end

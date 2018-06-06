@@ -3,7 +3,6 @@ import React                        from 'react';
 import MainLayout                   from '../layouts/main';
 import RegistrationsNew             from '../views/registrations/new';
 import LiveStream                   from '../components/live_stream';
-import SessionsNew                  from '../views/sessions/new';
 import UserShow                     from '../views/users/show';
 import Leaderboard                  from '../views/users/leaderboard';
 import Actions                      from '../actions/sessions';
@@ -13,9 +12,9 @@ export default function configRoutes(store) {
   const _ensureAuthenticated = (nextState, replace, callback) => {
     const { dispatch } = store;
     const { session } = store.getState();
-    const { current_user } = session;
+    const { currentUser } = session;
 
-    if(!current_user && localStorage.getItem('phoenixAuthToken')) {
+    if(!currentUser && localStorage.getItem('phoenixAuthToken')) {
       dispatch(Actions.currentUser());
     } else if(!localStorage.getItem('phoenixAuthToken')) {
       replace('/sign_in');
