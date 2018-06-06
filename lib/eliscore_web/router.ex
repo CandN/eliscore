@@ -38,7 +38,7 @@ defmodule EliscoreWeb.Router do
     scope "/v1" do
       get "/channel", ChannelsController, :index
     end
-    
+
     forward "/", EliscoreWeb.API.Core
   end
 
