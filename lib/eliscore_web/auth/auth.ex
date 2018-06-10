@@ -1,9 +1,10 @@
 defmodule Eliscore.Auth do
   use EliscoreWeb, :controller
   alias Eliscore.{Repo, User}
+  require IEx
 
   def sign_in_user(conn, params) do
-    case find_or_create(params) do
+    case find_or_create(Repo.get_by(User, params_map(params)), params) do
       {:ok, user} ->
         {:ok, jwt, _full_claims} = user |> Eliscore.Guardian.encode_and_sign(%{}, token_type: "access")
 
@@ -20,22 +21,21 @@ defmodule Eliscore.Auth do
     end
   end
 
-  defp find_or_create(params) do
-    insert_params = Map.new(params, fn {k, v} -> {String.to_atom(k), v} end)
-    case Repo.get_by(User, params_map(params)) do
-      nil ->
-        User.changeset(%User{}, insert_params)
-        |> Repo.insert
-      user ->
-        update_user_image(user, params["image_url"])
-        {:ok, user}
-    end
+  defp find_or_create(nil = _user, params) do
+    %User{}
+    |> User.changeset(params)
+    |> Repo.insert
+  end
+
+  defp find_or_create(%User{} = user, params) do
+    update_user_image(user, params["image_url"])
+    {:ok, user}
   end
 
   defp params_map(params) do
     %{
-      email: params["email"],
-      uuid: params["uuid"],
+      email: params[:email],
+      uuid: params[:uuid],
     }
   end
 

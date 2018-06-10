@@ -139,7 +139,6 @@ class EliscoreChat extends React.Component {
   renderUserList() {
     let onlineUsers= this.renderOnlineUsers();
     const { users } = this.props
-    debugger
 
     return (
       <ul className="chat-userlist">

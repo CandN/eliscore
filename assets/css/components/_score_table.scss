@@ -36,6 +36,26 @@
     bottom: 70px;
     right: 70px;
   }
+
+  &__btn-logout {
+      padding: 10px 15px;
+      cursor: pointer;
+      border-radius: 10%;
+      transition: 0.2s linear;
+      background-color: darken($bg-color-primary, 5%);
+
+      &:hover {
+          transform: scale(1.1);
+          background-color: grey;
+          color: $color-black;
+      }
+  }
+
+  &__btn-logout-container {
+      position: fixed;
+      top: 70px;
+      right: 70px;
+  }
 }
 
 .match {

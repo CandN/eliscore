@@ -5,17 +5,10 @@ defmodule Eliscore.Guardian do
     {:ok, to_string(resource.id)}
   end
 
-  def subject_for_token(_, _) do
-    {:error, :reason_for_error}
-  end
-
   def resource_from_claims(claims) do
     user_id = claims["sub"]
     user = Eliscore.Repo.get!(Eliscore.User, user_id)
     {:ok, user}
-  end
-  def resource_from_claims(_claims) do
-    {:error, :reason_for_error}
   end
 
   def after_encode_and_sign(resource, claims, token, _options) do

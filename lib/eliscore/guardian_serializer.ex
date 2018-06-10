@@ -1,6 +1,4 @@
 defmodule Eliscore.GuardianSerializer do
-  @behaviour Guardian.Serializer
-
   alias Eliscore.{Repo, User}
 
   def for_token(user = %User{}), do: {:ok, "User:#{user.id}"}

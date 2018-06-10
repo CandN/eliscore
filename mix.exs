@@ -5,7 +5,7 @@ defmodule Eliscore.Mixfile do
     [
       app: :eliscore,
       version: "0.0.1",
-      elixir: "~> 1.4",
+      elixir: "~> 1.6.4",
       elixirc_paths: elixirc_paths(Mix.env),
       compilers: [:phoenix, :gettext] ++ Mix.compilers,
       build_embedded: Mix.env == :prod,
@@ -37,7 +37,7 @@ defmodule Eliscore.Mixfile do
       {:phoenix, "~> 1.3.0"},
       {:phoenix_pubsub, "~> 1.0"},
       {:phoenix_ecto, "~> 3.2"},
-      {:postgrex, ">= 0.0.0"},
+      {:postgrex, "~> 0.13.0"},
       {:phoenix_html, "~> 2.10"},
       {:phoenix_live_reload, "~> 1.0", only: :dev},
       {:gettext, "~> 0.11"},
@@ -52,6 +52,10 @@ defmodule Eliscore.Mixfile do
       {:poison, "~> 3.1"},
       {:ex_machina, "~> 2.1", only: :test},
       {:scrivener_ecto, "~> 1.0"},
+      {:maru, "~> 0.11"},
+      {:jason, "~> 1.0"},
+      {:dialyxir, "~> 0.4", only: [:dev]},
+      {:credo, "~> 0.9.1", only: [:dev, :test], runtime: false}
     ]
   end
 

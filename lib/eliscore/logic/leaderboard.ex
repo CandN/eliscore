@@ -1,11 +1,22 @@
-defmodule EliscoreWeb.LeaderboardController do
-  use EliscoreWeb, :controller
-
-  alias Eliscore.{ User, Repo }
+defmodule Eliscore.Logic.Leaderboard do
   import Ecto.Query, only: [from: 2]
+  alias Eliscore.{User, Repo}
 
-  def index(conn, _params) do
-    q = from u in User,
+  @moduledoc """
+  This module is responsible for handling all leaderboard
+  related logic actions
+  """
+
+  @spec calculate() :: list(map())
+  def calculate() do
+    leaderboard_query()
+    |> Repo.all()
+    |> Enum.map(&add_points_to_player/1)
+    |> Enum.sort_by(fn(map) -> {-map.points, map.all_games} end)
+  end
+
+  defp leaderboard_query() do
+    from u in User,
     select: %{
       full_name: u.full_name,
       wins: fragment("(
@@ -33,14 +44,6 @@ defmodule EliscoreWeb.LeaderboardController do
            OR (player2_id = u0.id)
         ) AS all_games")
     }
-
-    players = Repo.all(q)
-    |> Enum.map(&add_points_to_player/1)
-    |> Enum.sort_by(fn(map) -> {-map.points, map.all_games} end)
-
-    conn
-    |> put_status(:ok)
-    |> render("index.json", players: players)
   end
 
   defp add_points_to_player(player_stats = %{wins: wins, draws: draws}) do

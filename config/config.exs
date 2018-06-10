@@ -33,6 +33,14 @@ config :guardian, Guardian.DB,
   schema_name: "guardian_tokens",
   sweep_interval: 60
 
+config :maru, EliscoreWeb.API.Core,
+  versioning: [using: :path],
+  http: [port: 4001]
+
+config :ecto, json_library: Jason
+
+config :phoenix, :format_encoders,
+  json: Jason
 # Import environment specific config. This must remain at the bottom
 # of this file so it overrides the configuration defined above.
 import_config "#{Mix.env}.exs"

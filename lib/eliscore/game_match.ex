@@ -1,9 +1,17 @@
 defmodule Eliscore.GameMatch do
   use Ecto.Schema
-  import Ecto.{ Changeset, Query }
+  import Ecto.{Changeset, Query}
   alias Eliscore.GameMatch
 
-  @derive {Poison.Encoder, only: [:id, :player1_id, :player2_id, :player1_score, :player2_score]}
+  @derive {Jason.Encoder, only: [
+              :id,
+              :player1,
+              :player1_score,
+              :player2,
+              :player2_score,
+              :category_id
+            ]}
+
   schema "game_matches" do
     field :accepted, :boolean, default: false
     belongs_to :player1, Eliscore.User, foreign_key: :player1_id
@@ -15,42 +23,46 @@ defmodule Eliscore.GameMatch do
     timestamps()
   end
 
-  @permitted_params ~w(player1_id player1_score player2_id player2_score category_id accepted)a
-  @required_params ~w(player1_id player1_score player2_id player2_score)a
+  @permitted_params ~w(
+    player1_id
+    player1_score
+    player2_id
+    player2_score
+    category_id
+    accepted
+  )a
 
-  @doc false
+  @required_params ~w(
+    player1_id
+    player1_score
+    player2_id
+    player2_score
+    category_id
+  )a
+
+  @spec changeset(%GameMatch{}, map()) :: map()
   def changeset(%GameMatch{} = game_match, attrs) do
     game_match
     |> cast(attrs, @permitted_params)
     |> validate_required(@required_params)
-
   end
 
-  def accepted(query) do
-    from q in query,
+  @spec accepted() :: %Ecto.Query{}
+  def accepted() do
+    from q in __MODULE__,
       where: q.accepted == true,
       select: q
   end
 
-  def newest(query) do
-    from q in query,
+  @spec newest() :: %Ecto.Query{}
+  def newest() do
+    from q in __MODULE__,
       order_by: [desc: q.inserted_at],
       select: q
   end
 
-  def with_players(query) do
-    from q in query, preload: [:player1, :player2]
+  @spec with_players() :: %Ecto.Query{}
+  def with_players() do
+    from q in __MODULE__, preload: [:player1, :player2]
   end
-
-  def winner(game_match = %{player1_score: score1, player2_score: score2})
-  when score1 > score2 do
-    game_match.player1.login
-  end
-
-  def winner(game_match = %{player1_score: score1, player2_score: score2})
-  when score2 > score1 do
-    game_match.player2.login
-  end
-
-  def winner(_), do: :draw
 end

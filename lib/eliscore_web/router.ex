@@ -27,31 +27,19 @@ defmodule EliscoreWeb.Router do
     pipe_through :unauthorized
 
     scope "/v1" do
-      post "/registrations", RegistrationController, :create
+      forward "/registrations", API.V1.Registrations.Base
       get "/verify_token", TokensController, :verify
     end
   end
 
-  scope "/api", EliscoreWeb do
+  scope path: "/api" do
     pipe_through :authorized
 
     scope "/v1" do
-      get "/current_user", CurrentUserController, :show
-
-      get "/matches", MatchController, :index
-      post "/matches", MatchController, :create
-      options "/matches", MatchController, :nothing
-
-      get "/leaderboard", LeaderboardController, :index
-
       get "/channel", ChannelsController, :index
-      resources "/users", UserController, only: [:index, :show]
-      resources "/categories", CategoryController, only: [:index]
-
-      scope "/tournaments" do
-        get "/date", TournamentController, :date
-      end
     end
+
+    forward "/", EliscoreWeb.API.Core
   end
 
   scope "/", EliscoreWeb do

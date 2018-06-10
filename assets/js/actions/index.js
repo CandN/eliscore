@@ -45,13 +45,11 @@ export const addMatch = (id, player1, score1, player2, score2, category_id) => {
 
 export const postMatch = (player1_id, score1, player2_id, score2, category_id) => {
   var game_match = {
-    game_match: {
-      player1_id: player1_id,
-      player2_id: player2_id,
-      player1_score: score1,
-      player2_score: score2,
-      category_id: category_id,
-    }
+    player1_id: player1_id,
+    player2_id: player2_id,
+    player1_score: score1,
+    player2_score: score2,
+    category_id: category_id,
   }
 
   return dispatch => {
